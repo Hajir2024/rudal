@@ -23,7 +23,6 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Charts -->
     <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
