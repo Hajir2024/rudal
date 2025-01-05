@@ -23,8 +23,6 @@ class M_Dokumen extends Model
         'file',
         'status'
     ];
-
-
     public function getDataDokumen()
     {
         return $this->select('
@@ -36,5 +34,18 @@ class M_Dokumen extends Model
             ->join('sub_kegiatans', 'sub_kegiatans.id = dokumens.id_subkeg', 'left')
             ->orderBy('dokumens.created_at', 'DESC')
             ->findAll();
+    }
+
+    public function getDokumenById($id)
+    {
+        return $this->select('
+                dokumens.*, 
+                bidangs.bidang, 
+                sub_kegiatans.sub_kegiatan
+            ')
+            ->join('bidangs', 'bidangs.id = dokumens.id_bid', 'left')
+            ->join('sub_kegiatans', 'sub_kegiatans.id = dokumens.id_subkeg', 'left')
+            ->where('dokumens.id', $id) // Memastikan mengambil data berdasarkan ID
+            ->first(); // Mengambil satu baris data
     }
 }

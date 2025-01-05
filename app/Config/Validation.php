@@ -41,4 +41,20 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    public $dokumenUpload = [
+        'kd_rak' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Kode rak harus diisi.',
+            ],
+        ],
+        'file' => [
+            'rules' => 'uploaded[file]|max_size[file,10000]|ext_in[file,pdf]',
+            'errors' => [
+                'uploaded' => 'File harus diunggah.',
+                'max_size' => 'Ukuran file maksimum adalah 10 MB.',
+                'ext_in' => 'File yang diunggah harus berupa PDF.',
+            ],
+        ],
+    ];
 }

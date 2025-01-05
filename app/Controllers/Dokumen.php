@@ -32,6 +32,11 @@ class Dokumen extends BaseController
 
     public function simpan()
     {
+
+        // Validasi input
+        if (!$this->validate('dokumenUpload')) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
         $data = [
             'kd_rak'        => $this->request->getVar('kd_rak'),
             'kd_box'        => $this->request->getVar('kd_box') . $this->request->getVar('no_box'),
@@ -44,15 +49,58 @@ class Dokumen extends BaseController
             'id_subkeg'     => $this->request->getVar('id_subkeg'),
             'tahun'         => $this->request->getVar('tahun'),
             'ket'           => $this->request->getVar('ket'),
-            'file'          => $this->request->getVar('file')
         ];
 
+        // MEMBUAT NAMA FILE
+        $bidang = str_replace(' ', '-', getNamaBidang($this->request->getVar('id_bid')));
+        $kode_rak = $this->request->getVar('kd_rak');
+        $kode_box = str_replace('/', '-', $this->request->getVar('kd_box')) . $this->request->getVar('no_box');
+        $date = date('Y-m-d_H-i-s', strtotime('+1 hours'));
+
+        $namaFile = $bidang . '_' . $kode_rak . '_' . $kode_box . '_' . $date . '.' . $this->request->getFile('file')->getClientExtension();
+
+
+        // Proses file upload
+        $file = $this->request->getFile('file');
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move('public/uploads', $namaFile);  // Pindahkan file ke folder uploads
+            $data['file'] = $namaFile;          // Simpan nama file di database
+        }
+
+        // Simpan data
         $this->dokumen->save($data);
-        return redirect()->to('Dokumen');
+        // Redirect dengan pesan sukses
+        return redirect()->to('Dokumen')->with('success', 'Data berhasil disimpan.');
+    }
+
+    public function detail($id)
+    {
+        // Ambil data dokumen berdasarkan ID
+        $dokumen = $this->dokumen->getDokumenById($id);
+
+        // Cek apakah data ditemukan
+        if ($dokumen) {
+            return $this->response->setJSON($dokumen);
+        } else {
+            return $this->response->setJSON(['error' => 'Dokumen tidak ditemukan']);
+        }
     }
 
     public function hapus($id)
     {
+        // Ambil data dokumen berdasarkan ID
+        $dokumen = $this->dokumen->find($id);
+        if (!$dokumen) {
+            return redirect()->to('Dokumen')->with('error', 'Dokumen tidak ditemukan.');
+        }
+
+        // Path file dokumen (pastikan lokasi file benar)
+        $filePath = FCPATH . 'public/uploads/' . $dokumen['file']; // Sesuaikan dengan nama kolom di database Anda
+
+        // Hapus file dari server jika ada
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
         if ($this->dokumen->delete($id)) {
             return redirect()->to('Dokumen')->with('success', 'Dokumen berhasil dihapus.');
         } else {

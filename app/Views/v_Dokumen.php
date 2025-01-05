@@ -13,7 +13,7 @@
         </button>
     </div>
 <?php elseif (session()->getFlashdata('error')): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Failed..!!</strong> <?= session()->getFlashdata('error') ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -58,7 +58,7 @@
                     <a href="#" class="badge badge-warning btn-detail" data-id="<?= $r['id'] ?>" data-placement="top" title="Detail">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="badge badge-primary" data-placement="down" title="Download">
+                    <a href="<?= base_url('public/uploads/' . $r['file'] . '') ?>" target="_blank" class="badge badge-primary" data-placement="down" title="Download">
                         <i class="fas fa-download"></i>
                     </a>
                     <a href="#" class="badge badge-danger btn-delete" data-id="<?= $r['id'] ?>" data-placement="right" title="Delete">
@@ -83,39 +83,39 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('Dokumen/simpan') ?>" method="POST" class="text-gray-900">
+                <form action="<?= base_url('Dokumen/simpan') ?>" method="POST" class="text-gray-900" enctype="multipart/form-data">
                     <div class="row">
                         <!-- Kolom pertama -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="kd_rak">Kode Rak</label>
-                                <input type="text" class="form-control form-control-sm" id="kd_rak" name="kd_rak" autocomplete="off" required>
+                                <input type="text" class="form-control form-control-sm" id="kd_rak" name="kd_rak" autocomplete="off">
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="kd_box">Kode Box</label>
-                                        <input type="text" class="form-control form-control-sm" id="kd_box" name="kd_box" required readonly>
+                                        <input type="text" class="form-control form-control-sm" id="kd_box" name="kd_box" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="no_box">Nomor Box</label>
-                                        <input type="number" class="form-control form-control-sm" id="no_box" name="no_box" autocomplete="off" min="1" max="20" oninput="validateTwoDigits(this)" required>
+                                        <input type="number" class="form-control form-control-sm" id="no_box" name="no_box" autocomplete="off" min="1" max="20" oninput="validateTwoDigits(this)">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="no_sp2d">No. SP2D</label>
-                                <input type="text" class="form-control form-control-sm" id="no_sp2d" name="no_sp2d" autocomplete="off" required>
+                                <input type="text" class="form-control form-control-sm" id="no_sp2d" name="no_sp2d" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="tgl_sp2d">Tanggal SP2D</label>
-                                <input type="date" class="form-control form-control-sm" id="tgl_sp2d" name="tgl_sp2d" autocomplete="off" required>
+                                <input type="date" class="form-control form-control-sm" id="tgl_sp2d" name="tgl_sp2d" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="no_kontrak">No. Kontrak</label>
-                                <input type="text" class="form-control form-control-sm" id="no_kontrak" name="no_kontrak" autocomplete="off" required>
+                                <input type="text" class="form-control form-control-sm" id="no_kontrak" name="no_kontrak" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="nilai_kontrak">Nilai Kontrak</label>
@@ -123,7 +123,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">Rp.</div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm" id="nilai_kontrak" name="nilai_kontrak" oninput="formatAngka(this)" autocomplete="off" required>
+                                    <input type="text" class="form-control form-control-sm" id="nilai_kontrak" name="nilai_kontrak" oninput="formatAngka(this)" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -131,11 +131,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="jenis_belanja">Jenis Belanja</label>
-                                <input type="text" class="form-control form-control-sm" id="jenis_belanja" name="jenis_belanja" autocomplete="off" required>
+                                <input type="text" class="form-control form-control-sm" id="jenis_belanja" name="jenis_belanja" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="bidang">Bidang</label>
-                                <select class="form-control form-control-sm" id="id_bid" name="id_bid" autocomplete="off" required>
+                                <select class="form-control form-control-sm" id="id_bid" name="id_bid" autocomplete="off">
                                     <option value="">Pilih Bidang</option>
                                     <?php $no = 1; ?>
                                     <?php foreach ($bidang as $r) : ?>
@@ -145,7 +145,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sub_kegiatan">Sub Kegiatan</label>
-                                <select class="form-control form-control-sm" id="id_subkeg" name="id_subkeg" autocomplete="off" required>
+                                <select class="form-control form-control-sm" id="id_subkeg" name="id_subkeg" autocomplete="off">
                                     <option value="">Pilih Sub Kegiatan</option>
                                     <?php $no = 1; ?>
                                     <?php foreach ($subkeg as $r) : ?>
@@ -155,7 +155,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="tahun">Tahun</label>
-                                <select class="form-control form-control-sm" id="tahun" name="tahun" autocomplete="off" required>
+                                <select class="form-control form-control-sm" id="tahun" name="tahun" autocomplete="off">
                                     <?php
                                     for ($year = 2020; $year <= date('Y'); $year++) {
                                         $selected = ($year == date('Y')) ? 'selected' : '';
@@ -167,13 +167,13 @@
                             <div class="form-group">
                                 <label for="file">Upload Dokumen</label>
                                 <div class="custom-file form-control-sm">
-                                    <input type="file" class="custom-file-input" id="file" name="file" onchange="updateFileName()">
+                                    <input type="file" class="custom-file-input" id="file" name="file" onchange="updateFileName()" accept=".pdf">
                                     <label id="file-text" class="custom-file-label" for="file">Choose file</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ket">Keterangan/Uraian</label>
-                                <textarea class="form-control form-control-sm" id="ket" name="ket" style="height: 88px;" autocomplete="off" required></textarea>
+                                <textarea class="form-control form-control-sm" id="ket" name="ket" style="height: 88px;" autocomplete="off"></textarea>
                             </div>
                         </div>
                     </div>
@@ -211,25 +211,73 @@
 
 <!-- DETAIL MODAL -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalDetailLabel">Detail Dokumen</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title text-gray-900" id="modalDetailLabel"><i class="fas fa-eye"></i> Detail Dokumen</h5>
+                <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body">
-                <!-- Detail Konten akan dimuat di sini -->
-                <p><strong>Kode Rak:</strong> <span id="detailKodeRak"></span></p>
-                <p><strong>Kode Box:</strong> <span id="detailKodeBox"></span></p>
-                <p><strong>No SP2D:</strong> <span id="detailNoSp2d"></span></p>
-                <p><strong>No Kontrak:</strong> <span id="detailNoKontrak"></span></p>
-                <p><strong>Bidang:</strong> <span id="detailBidang"></span></p>
-                <p><strong>Sub Kegiatan:</strong> <span id="detailSubKegiatan"></span></p>
-                <p><strong>Tahun:</strong> <span id="detailTahun"></span></p>
-                <p><strong>Keterangan:</strong> <span id="detailKeterangan"></span></p>
+                <table class="table table-sm table-borderless table-striped text-gray-900">
+                    <tr>
+                        <th style="width: 50%;">KODE RAK</th>
+                        <th style="width: 50%;">KODE BOX</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailKodeRak" class="font-italic"></span></td>
+                        <td><span id="detailKodeBox" class="font-italic"></span></td>
+                    </tr>
+                    <tr>
+                        <th>NO SP2D</th>
+                        <th>TANGGAL SP2D</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailNoSp2d" class="font-italic"></td>
+                        <td><span id="detailtglSp2d" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>NOMOR KONTRAK</th>
+                        <th>NILAI KONTRAK</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailNoKontrak" class="font-italic"></td>
+                        <td><span id="detailNilaiKontrak" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>JENIS BELANJA</th>
+                        <th>TAHUN</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailJenisBelanja" class="font-italic"></td>
+                        <td><span id="detailTahun" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>BIDANG</th>
+                        <th>SUB KEGIATAN</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailBidang" class="font-italic"></td>
+                        <td><span id="detailSubKegiatan" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>KETERANGAN/URAIAN</th>
+                        <th>DOKUMEN</th>
+                    </tr>
+                    <tr>
+                        <td><span id="detailKet" class="font-italic"></td>
+                        <td>
+                            <div id="detailFile"></div>
+                            <a id="detailFileLink" class="text-decoration-none" target="_blank">&raquo; View Full Document</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <label class="text-gray-900 float-left mr-auto">Status Dokumen: <span class="font-weight-bold" id="detailStatus"></span></label>
+                <label class="text-gray-900 float-left mr-auto">Tanggal Input: <span class="font-weight-bold" id="detailTglInput"></span></label>
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
@@ -239,6 +287,7 @@
 </div>
 <!-- End of Main Content -->
 
+<!-- Script untuk format angka -->
 <script>
     function formatAngka(input) {
         // Menghapus semua karakter selain angka
@@ -250,6 +299,7 @@
     }
 </script>
 
+<!-- Script untuk menggabungkan data-kode dan tahun -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const bidangSelect = document.getElementById('id_bid');
@@ -275,6 +325,7 @@
     });
 </script>
 
+<!-- Script untuk membatasi jumlah digit -->
 <script>
     function validateTwoDigits(input) {
         if (input.value.length > 0) {
@@ -288,6 +339,7 @@
     }
 </script>
 
+<!-- Script untuk konfirmasi hapus -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.btn-delete');
@@ -301,6 +353,60 @@
                 // Tampilkan modal
                 const modal = new bootstrap.Modal(document.getElementById('modalDelete'));
                 modal.show();
+            });
+        });
+    });
+</script>
+
+<!-- Script untuk menampilkan detail dokumen -->
+<script src="<?= base_url('public') ?>/js/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Event ketika tombol detail diklik
+        $('.btn-detail').on('click', function() {
+            var id = $(this).data('id'); // Ambil ID dari data-id link
+
+            // Melakukan permintaan AJAX ke controller
+            $.ajax({
+                url: '<?= base_url("Dokumen/detail") ?>/' + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Jika data ditemukan, isi modal dengan data
+                    if (data.error) {
+                        alert(data.error); // Jika data tidak ditemukan
+                    } else {
+                        $('#detailKodeRak').text(data.kd_rak);
+                        $('#detailKodeBox').text(data.kd_box);
+                        $('#detailNoSp2d').text(data.no_sp2d);
+                        $('#detailtglSp2d').text(data.tgl_sp2d);
+                        $('#detailNoKontrak').text(data.no_kontrak);
+                        $('#detailNilaiKontrak').text(data.nilai_kontrak);
+                        $('#detailBidang').text(data.bidang);
+                        $('#detailSubKegiatan').text(data.sub_kegiatan);
+                        $('#detailTahun').text(data.tahun);
+                        $('#detailKet').text(data.ket);
+                        if (data.file == null || data.file == '') {
+                            $('#detailFile').html('<b class="text-danger">Dokumen Tidak Tersedia</b>');
+                            $('#detailFileLink').hide();
+                        } else {
+                            $('#detailFile').html('<iframe src="<?= base_url("public") ?>/uploads/' + data.file + '" width="100%" height="300px"></iframe>');
+                            $('#detailFileLink').show().attr('href', '<?= base_url("public") ?>/uploads/' + data.file);
+                        }
+                        // $('#detailFile').attr('src', '<?= base_url('public') ?>/uploads/' + data.file);
+                        $('#detailTglInput').text(data.created_at);
+                        $('#detailJenisBelanja').text(data.jenis_belanja);
+                        if (data.status == 'TIDAK ADA') {
+                            $('#detailStatus').text(data.status).addClass('text-danger');
+                        }
+                        $('#detailStatus').text(data.status).addClass('text-success');
+                        // Tampilkan modal
+                        $('#modalDetail').modal('show');
+                    }
+                },
+                error: function() {
+                    alert('Terjadi kesalahan saat mengambil data');
+                }
             });
         });
     });
