@@ -27,7 +27,7 @@
     <!-- Nav Item - Charts -->
     <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
         <a class="nav-link" href="<?= base_url('Dokumen') ?>">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-book"></i>
             <span>Dokumen</span></a>
     </li>
 
@@ -38,7 +38,6 @@
             <span>Peminjaman</span>
         </a>
     </li>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -156,4 +155,4 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid mb-5 pb-5">

@@ -44,32 +44,32 @@
     </div>
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="<?= base_url('public/') ?>vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url('public/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('public') ?>/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url('public') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="<?= base_url('public/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="<?= base_url('public') ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="<?= base_url('public/') ?>js/sb-admin-2.min.js"></script>
+<script src="<?= base_url('public') ?>/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="<?= base_url('public/') ?>vendor/chart.js/Chart.min.js"></script>
+<script src="<?= base_url('public') ?>/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="<?= base_url('public/') ?>js/demo/chart-area-demo.js"></script>
-<script src="<?= base_url('public/') ?>js/demo/chart-pie-demo.js"></script>
+<script src="<?= base_url('public') ?>/js/demo/chart-area-demo.js"></script>
+<script src="<?= base_url('public') ?>/js/demo/chart-pie-demo.js"></script>
 
 <!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/dataTables.bootstrap4.min.js"></script>
 <!-- Buttons JS -->
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/dataTables.buttons.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/buttons.bootstrap4.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/jszip.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/pdfmake.min.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/vfs_fonts.js"></script>
+<script src="<?= base_url('public') ?>/js/dataTables/buttons.html5.min.js"></script>
 
 <!-- Chained Select -->
 <script src="<?= base_url('public/') ?>js/jquery.chained.js"></script>

@@ -1,10 +1,25 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-800"><?= $title ?></h4>
-    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah">TAMBAH</button>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?></h4>
+    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah"><i class="fas fa-plus"></i> TAMBAH</button>
 </div>
 <hr>
 <!-- Content Row -->
+<?php if (session()->getFlashdata('success')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success..!!</strong> <?= session()->getFlashdata('success') ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php elseif (session()->getFlashdata('error')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Failed..!!</strong> <?= session()->getFlashdata('error') ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php endif; ?>
 <table id="myTable" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
     <thead>
         <tr>
@@ -40,13 +55,13 @@
                     <a href="#" class="badge badge-success" data-placement="left" title="Edit">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="#" class="badge badge-warning" data-placement="top" title="Detail">
+                    <a href="#" class="badge badge-warning btn-detail" data-id="<?= $r['id'] ?>" data-placement="top" title="Detail">
                         <i class="fas fa-eye"></i>
                     </a>
                     <a href="#" class="badge badge-primary" data-placement="down" title="Download">
                         <i class="fas fa-download"></i>
                     </a>
-                    <a href="#" class="badge badge-danger" data-placement="right" title="Delete">
+                    <a href="#" class="badge badge-danger btn-delete" data-id="<?= $r['id'] ?>" data-placement="right" title="Delete">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
@@ -172,6 +187,53 @@
         </div>
     </div>
 </div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDeleteLabel">Form Konfirmasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus dokumen ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <a href="" class="btn btn-danger" id="btnDeleteConfirm">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetailLabel">Detail Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Detail Konten akan dimuat di sini -->
+                <p><strong>Kode Rak:</strong> <span id="detailKodeRak"></span></p>
+                <p><strong>Kode Box:</strong> <span id="detailKodeBox"></span></p>
+                <p><strong>No SP2D:</strong> <span id="detailNoSp2d"></span></p>
+                <p><strong>No Kontrak:</strong> <span id="detailNoKontrak"></span></p>
+                <p><strong>Bidang:</strong> <span id="detailBidang"></span></p>
+                <p><strong>Sub Kegiatan:</strong> <span id="detailSubKegiatan"></span></p>
+                <p><strong>Tahun:</strong> <span id="detailTahun"></span></p>
+                <p><strong>Keterangan:</strong> <span id="detailKeterangan"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 <!-- /.container-fluid -->
 </div>
@@ -224,4 +286,22 @@
             input.value = ''; // Reset nilai jika di luar rentang
         }
     }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        const deleteConfirmButton = document.getElementById('btnDeleteConfirm');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const deleteUrl = "<?= base_url('Dokumen/hapus/') ?>" + id;
+                // Set href pada tombol konfirmasi
+                deleteConfirmButton.setAttribute('href', deleteUrl);
+                // Tampilkan modal
+                const modal = new bootstrap.Modal(document.getElementById('modalDelete'));
+                modal.show();
+            });
+        });
+    });
 </script>

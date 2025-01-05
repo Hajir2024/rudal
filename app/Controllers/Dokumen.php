@@ -50,4 +50,13 @@ class Dokumen extends BaseController
         $this->dokumen->save($data);
         return redirect()->to('Dokumen');
     }
+
+    public function hapus($id)
+    {
+        if ($this->dokumen->delete($id)) {
+            return redirect()->to('Dokumen')->with('success', 'Dokumen berhasil dihapus.');
+        } else {
+            return redirect()->to('Dokumen')->with('error', 'Gagal menghapus dokumen.');
+        }
+    }
 }
