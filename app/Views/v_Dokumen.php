@@ -52,7 +52,7 @@
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php endif; ?>
-                    <a href="#" class="badge badge-success" data-placement="left" title="Edit">
+                    <a href="#" class="badge badge-success btn-edit" data-id="<?= $r['id'] ?>" data-placement="left" title="Edit">
                         <i class="fas fa-edit"></i>
                     </a>
                     <a href="#" class="badge badge-warning btn-detail" data-id="<?= $r['id'] ?>" data-placement="top" title="Detail">
@@ -95,7 +95,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="kd_box">Kode Box</label>
-                                        <input type="text" class="form-control form-control-sm" id="kd_box" name="kd_box" readonly>
+                                        <input type="text" class="form-control form-control-sm kd_box" id="kd_box" name="kd_box" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -135,7 +135,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="bidang">Bidang</label>
-                                <select class="form-control form-control-sm" id="id_bid" name="id_bid" autocomplete="off">
+                                <select class="form-control form-control-sm id_bid" id="id_bid" name="id_bid" autocomplete="off">
                                     <option value="">Pilih Bidang</option>
                                     <?php $no = 1; ?>
                                     <?php foreach ($bidang as $r) : ?>
@@ -155,7 +155,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="tahun">Tahun</label>
-                                <select class="form-control form-control-sm" id="tahun" name="tahun" autocomplete="off">
+                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
                                     <?php
                                     for ($year = 2020; $year <= date('Y'); $year++) {
                                         $selected = ($year == date('Y')) ? 'selected' : '';
@@ -263,7 +263,7 @@
                     </tr>
                     <tr>
                         <th>KETERANGAN/URAIAN</th>
-                        <th>DOKUMEN</th>
+                        <th>DOKUMEN DIGITAL</th>
                     </tr>
                     <tr>
                         <td><span id="detailKet" class="font-italic"></td>
@@ -275,88 +275,130 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <label class="text-gray-900 float-left mr-auto">Status Dokumen: <span class="font-weight-bold" id="detailStatus"></span></label>
+                <label class="text-gray-900 float-left mr-auto">Status Dokumen Fisik: <span class="font-weight-bold" id="detailStatus"></span></label>
                 <label class="text-gray-900 float-left mr-auto">Tanggal Input: <span class="font-weight-bold" id="detailTglInput"></span></label>
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- EDIT MODAL -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-gray-900" id="modalEditLabel">
+                    <i class="fas fa-edit"></i> Edit Data
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" action="<?= base_url('Dokumen/update') ?>" method="POST" class="text-gray-900" enctype="multipart/form-data">
+                    <input type="hidden" id="editId" name="id">
+                    <div class="row">
+                        <!-- Kolom pertama -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editKdRak">Kode Rak</label>
+                                <input type="text" class="form-control form-control-sm" id="editKdRak" name="kd_rak" autocomplete="off">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="editKdBox">Kode Box</label>
+                                        <input type="text" class="form-control form-control-sm kd_box" id="kd_box" name="kd_box" readonly>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="editNoBox">Nomor Box</label>
+                                        <input type="number" class="form-control form-control-sm" id="editNoBox" name="no_box" autocomplete="off" min="1" max="20" oninput="validateTwoDigits(this)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editNoSp2d">No. SP2D</label>
+                                <input type="text" class="form-control form-control-sm" id="editNoSp2d" name="no_sp2d" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTglSp2d">Tanggal SP2D</label>
+                                <input type="date" class="form-control form-control-sm" id="editTglSp2d" name="tgl_sp2d" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="editNoKontrak">No. Kontrak</label>
+                                <input type="text" class="form-control form-control-sm" id="editNoKontrak" name="no_kontrak" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="editNilaiKontrak">Nilai Kontrak</label>
+                                <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Rp.</div>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm" id="editNilaiKontrak" name="nilai_kontrak" oninput="formatAngka(this)" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kolom kedua -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editJenisBelanja">Jenis Belanja</label>
+                                <input type="text" class="form-control form-control-sm" id="editJenisBelanja" name="jenis_belanja" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="editBidang">Bidang</label>
+                                <select class="form-control form-control-sm id_bid" id="id_bid" name="id_bid" autocomplete="off">
+                                    <option value="">Pilih Bidang</option>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($bidang as $r) : ?>
+                                        <option value="<?= $r['id'] ?>" data-kode='<?= $r['kode'] ?>'><?= $no++ . '. ' . $r['bidang'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editSubKegiatan">Sub Kegiatan</label>
+                                <select class="form-control form-control-sm" id="id_subkeg" name="id_subkeg" autocomplete="off">
+                                    <option value="">Pilih Sub Kegiatan</option>
+                                    <?php foreach ($subkeg as $r) : ?>
+                                        <option value="<?= $r['id'] ?>" data-chained="<?= $r['id_bid'] ?>"><?= '- ' . $r['sub_kegiatan'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editTahun">Tahun</label>
+                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
+                                    <?php for ($year = 2020; $year <= date('Y'); $year++) : ?>
+                                        <option value="<?= $year ?>"><?= $year ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editFile">Upload Dokumen</label>
+                                <div class="custom-file form-control-sm">
+                                    <input type="file" class="custom-file-input" id="editFile" name="file" onchange="editFileName()" accept=".pdf">
+                                    <label id="editFileText" class="custom-file-label" for="editFile">Choose file</label>
+                                </div>
+                                <input type="text" id="oldFile" name="oldFile">
+                                <input type="text" id="oldCreated_at" name="oldCreated_at">
+                            </div>
+                            <div class="form-group">
+                                <label for="editKet">Keterangan/Uraian</label>
+                                <textarea class="form-control form-control-sm" id="editKet" name="ket" style="height: 88px;" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
+                            <i class="fas fa-times"></i> Batal</button>
+                        <button type="submit" class="btn btn-sm btn-primary" id="formEditDokumen"> <i class="fas fa-save"></i> Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
-
-<!-- Script untuk format angka -->
-<script>
-    function formatAngka(input) {
-        // Menghapus semua karakter selain angka
-        let value = input.value.replace(/[^0-9]/g, '');
-        // Format angka dengan titik setiap ribuan
-        let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        // Menetapkan nilai yang sudah diformat kembali ke input
-        input.value = formattedValue;
-    }
-</script>
-
-<!-- Script untuk menggabungkan data-kode dan tahun -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const bidangSelect = document.getElementById('id_bid');
-        const kdBoxInput = document.getElementById('kd_box');
-        const tahunSelect = document.getElementById('tahun');
-
-        bidangSelect.addEventListener('change', function() {
-            // Mendapatkan option yang terpilih
-            const selectedOption = bidangSelect.options[bidangSelect.selectedIndex];
-            // Mengambil nilai dari atribut data-kode
-            const kodeValue = selectedOption.getAttribute('data-kode');
-            // Mengambil tahun yang terpilih
-            const tahunValue = tahunSelect.options[tahunSelect.selectedIndex].value;
-            // Menggabungkan nilai data-kode dengan tahun yang dipilih
-            kdBoxInput.value = tahunValue + (kodeValue ? '/' + kodeValue : '') + '/';
-        });
-
-        // Tambahkan listener untuk perubahan tahun
-        tahunSelect.addEventListener('change', function() {
-            // Memicu event 'change' di bidangSelect untuk memperbarui kdBoxInput
-            bidangSelect.dispatchEvent(new Event('change'));
-        });
-    });
-</script>
-
-<!-- Script untuk membatasi jumlah digit -->
-<script>
-    function validateTwoDigits(input) {
-        if (input.value.length > 0) {
-            input.value = input.value.slice(0, 2); // Memotong input menjadi 2 digit
-        }
-
-        // Memastikan nilai berada dalam rentang 10-99
-        if (input.value < 1 || input.value > 10) {
-            input.value = ''; // Reset nilai jika di luar rentang
-        }
-    }
-</script>
-
-<!-- Script untuk konfirmasi hapus -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const deleteButtons = document.querySelectorAll('.btn-delete');
-        const deleteConfirmButton = document.getElementById('btnDeleteConfirm');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                const deleteUrl = "<?= base_url('Dokumen/hapus/') ?>" + id;
-                // Set href pada tombol konfirmasi
-                deleteConfirmButton.setAttribute('href', deleteUrl);
-                // Tampilkan modal
-                const modal = new bootstrap.Modal(document.getElementById('modalDelete'));
-                modal.show();
-            });
-        });
-    });
-</script>
 
 <!-- Script untuk menampilkan detail dokumen -->
 <script src="<?= base_url('public') ?>/js/jquery-3.6.0.min.js"></script>
@@ -365,7 +407,6 @@
         // Event ketika tombol detail diklik
         $('.btn-detail').on('click', function() {
             var id = $(this).data('id'); // Ambil ID dari data-id link
-
             // Melakukan permintaan AJAX ke controller
             $.ajax({
                 url: '<?= base_url("Dokumen/detail") ?>/' + id,
@@ -390,16 +431,38 @@
                             $('#detailFile').html('<b class="text-danger">Dokumen Tidak Tersedia</b>');
                             $('#detailFileLink').hide();
                         } else {
-                            $('#detailFile').html('<iframe src="<?= base_url("public") ?>/uploads/' + data.file + '" width="100%" height="300px"></iframe>');
-                            $('#detailFileLink').show().attr('href', '<?= base_url("public") ?>/uploads/' + data.file);
+                            // Lakukan pengecekan apakah file dapat diakses
+                            var fileUrl = '<?= base_url("public") ?>/uploads/' + data.file;
+
+                            $.ajax({
+                                url: fileUrl,
+                                method: 'HEAD', // Hanya cek status HTTP
+                                success: function() {
+                                    // Jika file tersedia, tampilkan iframe
+                                    var iframe = $('<iframe>', {
+                                        src: fileUrl,
+                                        width: '100%',
+                                        height: '300px',
+                                        class: 'iframe-preview'
+                                    });
+                                    $('#detailFile').html(iframe);
+                                    $('#detailFileLink').show().attr('href', fileUrl);
+                                },
+                                error: function() {
+                                    // Jika file tidak dapat diakses (Forbidden atau Not Found)
+                                    $('#detailFile').html('<b class="text-danger">Dokumen Digital Tidak Tersedia atau File Tidak Ditemukan</b>');
+                                    $('#detailFileLink').hide();
+                                }
+                            });
                         }
                         // $('#detailFile').attr('src', '<?= base_url('public') ?>/uploads/' + data.file);
                         $('#detailTglInput').text(data.created_at);
                         $('#detailJenisBelanja').text(data.jenis_belanja);
                         if (data.status == 'TIDAK ADA') {
-                            $('#detailStatus').text(data.status).addClass('text-danger');
+                            $('#detailStatus').text(data.status).addClass('text-danger').removeClass('text-success');
+                        } else {
+                            $('#detailStatus').text(data.status).addClass('text-success').removeClass('text-danger');
                         }
-                        $('#detailStatus').text(data.status).addClass('text-success');
                         // Tampilkan modal
                         $('#modalDetail').modal('show');
                     }

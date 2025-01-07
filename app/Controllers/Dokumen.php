@@ -40,6 +40,7 @@ class Dokumen extends BaseController
         $data = [
             'kd_rak'        => $this->request->getVar('kd_rak'),
             'kd_box'        => $this->request->getVar('kd_box') . $this->request->getVar('no_box'),
+            'no_box'        => $this->request->getVar('no_box'),
             'no_sp2d'       => $this->request->getVar('no_sp2d'),
             'tgl_sp2d'      => $this->request->getVar('tgl_sp2d'),
             'no_kontrak'    => $this->request->getVar('no_kontrak'),
@@ -105,6 +106,53 @@ class Dokumen extends BaseController
             return redirect()->to('Dokumen')->with('success', 'Dokumen berhasil dihapus.');
         } else {
             return redirect()->to('Dokumen')->with('error', 'Gagal menghapus dokumen.');
+        }
+    }
+
+    public function update()
+    {
+        $id = $this->request->getPost('id');
+        $data = [
+            'kd_rak'        => $this->request->getPost('kd_rak'),
+            'kd_box'        => $this->request->getPost('kd_box') . $this->request->getPost('no_box'),
+            'no_box'        => $this->request->getPost('no_box'),
+            'no_sp2d'       => $this->request->getPost('no_sp2d'),
+            'tgl_sp2d'      => $this->request->getPost('tgl_sp2d'),
+            'no_kontrak'    => $this->request->getPost('no_kontrak'),
+            'nilai_kontrak' => preg_replace('/\D/', '', $this->request->getPost('nilai_kontrak')),
+            'jenis_belanja' => $this->request->getPost('jenis_belanja'),
+            'id_bid'        => $this->request->getPost('id_bid'),
+            'id_subkeg'     => $this->request->getPost('id_subkeg'),
+            'tahun'         => $this->request->getPost('tahun'),
+            'ket'           => $this->request->getPost('ket'),
+        ];
+        // // Handle file upload
+        // $file = $this->request->getFile('file');
+        // if ($file && $file->isValid() && !$file->hasMoved()) {
+        //     $newFileName = $file->getRandomName();
+        //     $file->move('public/uploads', $newFileName);
+        //     $data['file'] = $newFileName;
+        // }
+
+        if ($this->dokumen->update($id, $data)) {
+            return redirect()->to(base_url('Dokumen'))->with('success', 'Data berhasil diperbarui');
+        } else {
+            return redirect()->to(base_url('Dokumen'))->with('error', 'Gagal memperbarui data');
+        }
+    }
+
+    public function getDokumenById()
+    {
+        if ($this->request->getMethod() === 'POST') {
+            $id = $this->request->getPost('id');
+            $dokumen = $this->dokumen->getDokumenById($id);
+            if ($dokumen) {
+                return $this->response->setJSON($dokumen);
+            } else {
+                return $this->response->setJSON(['error' => 'Data not found'], 404);
+            }
+        } else {
+            return $this->response->setJSON(['error' => 'Invalid request method'], 405);
         }
     }
 }

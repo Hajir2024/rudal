@@ -11,6 +11,7 @@ class M_Dokumen extends Model
     protected $allowedFields = [
         'kd_rak',
         'kd_box',
+        'no_box',
         'no_sp2d',
         'tgl_sp2d',
         'no_kontrak',
@@ -41,6 +42,7 @@ class M_Dokumen extends Model
         return $this->select('
                 dokumens.*, 
                 bidangs.bidang, 
+                bidangs.kode, 
                 sub_kegiatans.sub_kegiatan
             ')
             ->join('bidangs', 'bidangs.id = dokumens.id_bid', 'left')

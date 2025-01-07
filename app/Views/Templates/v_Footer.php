@@ -74,6 +74,9 @@
 <!-- Chained Select -->
 <script src="<?= base_url('public/') ?>js/jquery.chained.js"></script>
 
+<!-- Costum Script -->
+<script src="<?= base_url('public/') ?>js/my_script.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable({
@@ -101,6 +104,15 @@
     function updateFileName() {
         // Ambil elemen input file
         var fileInput = document.getElementById('file');
+        var fileName = fileInput.files[0].name; // Ambil nama file yang dipilih
+        // Update label untuk menampilkan nama file
+        var label = fileInput.nextElementSibling;
+        label.innerText = fileName;
+    }
+
+    function editFileName() {
+        // Ambil elemen input file
+        var fileInput = document.getElementById('editFile');
         var fileName = fileInput.files[0].name; // Ambil nama file yang dipilih
         // Update label untuk menampilkan nama file
         var label = fileInput.nextElementSibling;
