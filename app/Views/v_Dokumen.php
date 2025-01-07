@@ -134,6 +134,17 @@
                                 <input type="text" class="form-control form-control-sm" id="jenis_belanja" name="jenis_belanja" autocomplete="off">
                             </div>
                             <div class="form-group">
+                                <label for="tahun">Tahun</label>
+                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
+                                    <?php
+                                    for ($year = 2020; $year <= date('Y'); $year++) {
+                                        $selected = ($year == date('Y')) ? 'selected' : '';
+                                        echo "<option value='$year' $selected>$year</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="bidang">Bidang</label>
                                 <select class="form-control form-control-sm id_bid" id="id_bid" name="id_bid" autocomplete="off">
                                     <option value="">Pilih Bidang</option>
@@ -151,17 +162,6 @@
                                     <?php foreach ($subkeg as $r) : ?>
                                         <option value="<?= $r['id'] ?>" data-chained="<?= $r['id_bid'] ?>"><?= '- ' . $r['sub_kegiatan'] ?></option>
                                     <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tahun">Tahun</label>
-                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
-                                    <?php
-                                    for ($year = 2020; $year <= date('Y'); $year++) {
-                                        $selected = ($year == date('Y')) ? 'selected' : '';
-                                        echo "<option value='$year' $selected>$year</option>";
-                                    }
-                                    ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -297,7 +297,7 @@
             </div>
             <div class="modal-body">
                 <form id="editForm" action="<?= base_url('Dokumen/update') ?>" method="POST" class="text-gray-900" enctype="multipart/form-data">
-                    <input type="hidden" id="editId" name="id">
+                    <input type="hidden" id="editId" name="id" hidden>
                     <div class="row">
                         <!-- Kolom pertama -->
                         <div class="col-md-6">
@@ -348,6 +348,14 @@
                                 <input type="text" class="form-control form-control-sm" id="editJenisBelanja" name="jenis_belanja" autocomplete="off">
                             </div>
                             <div class="form-group">
+                                <label for="editTahun">Tahun</label>
+                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
+                                    <?php for ($year = 2020; $year <= date('Y'); $year++) : ?>
+                                        <option value="<?= $year ?>"><?= $year ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="editBidang">Bidang</label>
                                 <select class="form-control form-control-sm id_bid" id="id_bid" name="id_bid" autocomplete="off">
                                     <option value="">Pilih Bidang</option>
@@ -367,21 +375,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="editTahun">Tahun</label>
-                                <select class="form-control form-control-sm tahun" id="tahun" name="tahun" autocomplete="off">
-                                    <?php for ($year = 2020; $year <= date('Y'); $year++) : ?>
-                                        <option value="<?= $year ?>"><?= $year ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="editFile">Upload Dokumen</label>
                                 <div class="custom-file form-control-sm">
                                     <input type="file" class="custom-file-input" id="editFile" name="file" onchange="editFileName()" accept=".pdf">
                                     <label id="editFileText" class="custom-file-label" for="editFile">Choose file</label>
                                 </div>
-                                <input type="text" id="oldFile" name="oldFile">
-                                <input type="text" id="oldCreated_at" name="oldCreated_at">
+                                <input type="hidden" id="oldFile" name="oldFile" hidden>
+                                <input type="hidden" id="oldCreated_at" name="oldCreated_at" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="editKet">Keterangan/Uraian</label>

@@ -52,14 +52,13 @@ class Dokumen extends BaseController
             'ket'           => $this->request->getVar('ket'),
         ];
 
-        // MEMBUAT NAMA FILE
-        $bidang = str_replace(' ', '-', getNamaBidang($this->request->getVar('id_bid')));
-        $kode_rak = $this->request->getVar('kd_rak');
-        $kode_box = str_replace('/', '-', $this->request->getVar('kd_box')) . $this->request->getVar('no_box');
-        $date = date('Y-m-d_H-i-s', strtotime('+1 hours'));
+        $id = $this->request->getVar('id_bid');
+        $kd_rak = $this->request->getVar('kd_rak');
+        $kd_box = $this->request->getVar('kd_box');
+        $no_box = $this->request->getVar('no_box');
+        $typeFile = $this->request->getFile('file')->getClientExtension();
 
-        $namaFile = $bidang . '_' . $kode_rak . '_' . $kode_box . '_' . $date . '.' . $this->request->getFile('file')->getClientExtension();
-
+        $namaFile = getNamaFile($id, $kd_rak, $kd_box, $no_box, $typeFile);
 
         // Proses file upload
         $file = $this->request->getFile('file');
@@ -111,7 +110,6 @@ class Dokumen extends BaseController
 
     public function update()
     {
-        $id = $this->request->getPost('id');
         $data = [
             'kd_rak'        => $this->request->getPost('kd_rak'),
             'kd_box'        => $this->request->getPost('kd_box') . $this->request->getPost('no_box'),
@@ -126,18 +124,49 @@ class Dokumen extends BaseController
             'tahun'         => $this->request->getPost('tahun'),
             'ket'           => $this->request->getPost('ket'),
         ];
-        // // Handle file upload
-        // $file = $this->request->getFile('file');
-        // if ($file && $file->isValid() && !$file->hasMoved()) {
-        //     $newFileName = $file->getRandomName();
-        //     $file->move('public/uploads', $newFileName);
-        //     $data['file'] = $newFileName;
-        // }
+        // Handle file upload
+
+        $id     = $this->request->getPost('id');
+        $id_bid = $this->request->getPost('id_bid');
+        $kd_rak = $this->request->getPost('kd_rak');
+        $kd_box = $this->request->getPost('kd_box');
+        $no_box = $this->request->getPost('no_box');
+        $tahun  = $this->request->getPost('tahun');
+        $file   = $this->request->getFile('file');
+        $typeFile = $file->getClientExtension();
+
+        $dokumenLama = $this->dokumen->getDokumenById($id);
+        $namaFileBaru = getNamaFile($id_bid, $kd_rak, $kd_box, $no_box, "pdf");
+        $fileLama = $this->request->getPost('oldFile');
+        // dd($dokumenLama);
+
+        // CASE 1: Tidak ada perubahan file jika user tidak upload file baru
+        if (!$file || !$file->isValid() || $file->hasMoved()) {
+            // Cek apakah ada perubahan pada kolom form tertentu
+            if ($dokumenLama['kd_rak'] != $kd_rak || $dokumenLama['kd_box'] != ($kd_box . $no_box) || $dokumenLama['tahun'] != $tahun) {
+                // CASE 2: Update nama file jika ada perubahan pada bidang, kode rak, box, atau tahun
+                $typeFile = pathinfo($fileLama, PATHINFO_EXTENSION);
+                // Ganti nama file di folder uploads
+                if (file_exists("public/uploads/" . $fileLama)) {
+                    rename("public/uploads/" . $fileLama, "public/uploads/" . $namaFileBaru);
+                }
+                $data['file'] = $namaFileBaru;
+            }
+        } else {
+            // CASE 3: User mengganti file/upload file baru
+            // Hapus file lama jika ada
+            if ($fileLama && file_exists("public/uploads/" . $fileLama)) {
+                unlink("public/uploads/" . $fileLama);
+            }
+            // Upload file baru
+            $file->move('public/uploads', $namaFileBaru);
+            $data['file'] = $namaFileBaru;
+        }
 
         if ($this->dokumen->update($id, $data)) {
-            return redirect()->to(base_url('Dokumen'))->with('success', 'Data berhasil diperbarui');
+            return redirect()->to(base_url('Dokumen'))->with('success', 'Data Berhasil Diperbarui');
         } else {
-            return redirect()->to(base_url('Dokumen'))->with('error', 'Gagal memperbarui data');
+            return redirect()->to(base_url('Dokumen'))->with('error', 'Gagal Memperbarui Data');
         }
     }
 
