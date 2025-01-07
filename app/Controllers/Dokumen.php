@@ -22,7 +22,7 @@ class Dokumen extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Dokumen',
+            'title' => 'DOKUMEN',
             'dokumen' => $this->dokumen->getDataDokumen(),
             'bidang' => $this->bidang->getDataBidang(),
             'subkeg' => $this->subkegiatan->getDataSubKeg(),

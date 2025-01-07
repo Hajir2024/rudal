@@ -7,7 +7,7 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'DASHBOARD'
         ];
         return $this->template->load('v_Dashboard', $data);
     }

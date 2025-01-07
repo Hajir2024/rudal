@@ -122,3 +122,30 @@ $(document).ready(function () {
         });
     });
 });
+
+
+function showTime() {
+    var date = new Date();
+    var j = date.getHours(); // 0-23
+    var m = date.getMinutes(); // 0-59
+    var d = date.getSeconds(); // 0-59
+    var session = "AM";
+
+    if (j == 0) {
+        j = 12
+    }
+    if (j > 12) {
+        j = j - 12;
+        session = "PM"
+    }
+
+    j = (j < 10) ? "0" + j : j;
+    m = (m < 10) ? "0" + m : m;
+    d = (d < 10) ? "0" + d : d;
+
+    var waktu = j + ":" + m + ":" + d + " " + session;
+    document.getElementById("time").innerText = waktu;
+    document.getElementById("time").textContent = waktu;
+
+    setTimeout(showTime, 1000)
+}

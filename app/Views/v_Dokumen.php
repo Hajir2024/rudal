@@ -27,10 +27,14 @@
             <th class="text-center">Kode Rak</th>
             <th class="text-center">Kode Box</th>
             <th class="text-center">No. SP2D</th>
-            <!-- <th class="text-center">No. Kontrak</th> -->
-            <!-- <th class="text-center">Bidang</th> -->
-            <!-- <th class="text-center">Sub Kegiatan</th> -->
-            <th class="text-center">Keterangan</th>
+            <th class="text-center">Tanggal SP2D</th>
+            <th class="text-center">No. Kontrak</th>
+            <th class="text-center">Nilai Kontrak</th>
+            <th class="text-center">Bidang</th>
+            <th class="text-center">Sub Kegiatan</th>
+            <th class="text-center">Jenis Belanja</th>
+            <th class="text-center">Tahun</th>
+            <th class="text-center">Keterangan/Uraian</th>
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
@@ -42,9 +46,13 @@
                 <td class="text-center"><?= $r['kd_rak'] ?></td>
                 <td class="text-center"><?= $r['kd_box'] ?></td>
                 <td><?= $r['no_sp2d'] ?></td>
-                <!-- <td><?= $r['no_kontrak'] ?></td> -->
-                <!-- <td><?= $r['bidang'] ?></td> -->
-                <!-- <td><?= $r['sub_kegiatan'] ?></td> -->
+                <td><?= $r['tgl_sp2d'] ?></td>
+                <td><?= $r['no_kontrak'] ?></td>
+                <td><?= $r['nilai_kontrak'] ?></td>
+                <td><?= $r['bidang'] ?></td>
+                <td><?= $r['sub_kegiatan'] ?></td>
+                <td><?= $r['jenis_belanja'] ?></td>
+                <td><?= $r['tahun'] ?></td>
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center">
                     <?php if ($r['status'] == 'TIDAK ADA') : ?>

@@ -15,7 +15,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item <?= ($title == 'Dashboard') ? 'active' : '' ?>">
+    <li class="nav-item <?= ($title == 'DASHBOARD') ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url('/') ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -25,7 +25,7 @@
     <hr class="sidebar-divider">
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Charts -->
-    <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
+    <li class="nav-item <?= ($title == 'DOKUMEN') ? 'active' : '' ?> ">
         <a class="nav-link" href="<?= base_url('Dokumen') ?>">
             <i class="fas fa-fw fa-book"></i>
             <span>Dokumen</span></a>
@@ -76,12 +76,13 @@
             </button>
             <!-- Topbar Search -->
             <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <h6>TES</h6>
+                class="d-none d-sm-inline-block form-inline ">
+                <h5>RUDAL - Ruang Arsip Digital</h5>
+                <i>Pengarsipan yang Membawa Keamanan dan Kemudahan dalam Penyimpanan Dokumen</i>
             </form>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-
+                <small class="mt-auto mb-auto mr-1"><?= hari_ini(); ?>, </small><small id="time" class="font-weight-bold mt-auto mb-auto"></small>
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -105,16 +106,6 @@
                         </form>
                     </div>
                 </li>
-
-                <!-- Nav Item - Alerts -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link dropdown-toggle text-gray-900" href="#" id="alertsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h6><?= date('d M Y') ?></h6>
-                    </a>
-                </li>
-
-
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 

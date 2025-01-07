@@ -9,16 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title><?= $title ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url('public') ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="<?= base_url('public') ?>/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
-    <link href="<?= base_url('public') ?>/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- Buttons CSS -->
-    <link href="<?= base_url('public') ?>/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <!-- dataTables Buttons -->
+    <link rel="stylesheet" href="<?= base_url('public') ?>/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="<?= base_url('public') ?>/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?= base_url('public') ?>/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?= base_url('public') ?>/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css">
 
 </head>
 
