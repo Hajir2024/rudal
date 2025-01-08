@@ -11,6 +11,9 @@
 
     <title><?= $title ?></title>
 
+    <link rel="shortcut icon" type="text/css" href="<?= base_url('public') ?>/img/rudal_1.png">
+    
+
     <!-- Custom fonts for this template-->
     <link href="<?= base_url('public') ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->

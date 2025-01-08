@@ -132,7 +132,8 @@
                 targets: [4, 6, 7, 8, 9, 10],
                 visible: false
             }],
-            dom: '<"d-flex justify-content-between align-items-center mb-3"Blf>rtip', // Table, Info, and Pagination
+            dom: '<"d-flex justify-content-between align-items-center mb-3"Blf>rt<"d-flex justify-content-between align-items-center mt-3"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
+ // Table, Info, and Pagination
             // Entries(l),
             // Buttons(B),
             // Filter(f),
@@ -222,8 +223,9 @@
                     extend: 'excelHtml5',
                     text: '<img src="<?= base_url('public/img/xls.png') ?>" width="30">', // Custom button icon
                     className: 'btn btn-light',
-                    titleAttr: "Export Excel",
-                },
+                    title: 'Data Arsip Dokumen',
+                    titleAttr: "Export Excel"
+                }, 
                 {
                     extend: 'colvis',
                     text: '<img src="<?= base_url('public/img/list.png') ?>" width="25">', // Custom button icon

@@ -1,14 +1,14 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('/') ?>">
         <div class="sidebar-brand-icon">
-            <img src="<?= base_url('public/') ?>img/rudal-icon-only.png" alt="rudal" width="60px">
+            <img src="<?= base_url('public/') ?>img/rudal_1.png" alt="rudal" width="60px">
         </div>
-        <div class="sidebar-brand-text mx-2">
+        <!-- <div class="sidebar-brand-text mx-2">
             <img src="<?= base_url('public/') ?>img/rudal-text-only.png" alt="rudal" width="100px" height="40px" class="mt-1">
-        </div>
+        </div> -->
     </a>
 
     <!-- Divider -->
@@ -30,22 +30,38 @@
             <i class="fas fa-fw fa-book"></i>
             <span>Dokumen</span></a>
     </li>
-
-    <!-- Nav Item - Charts -->
+    
+    <!-- Nav Item - Charts
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Peminjaman</span>
         </a>
-    </li>
+    </li> -->
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Peminjaman</span>
+        </a>
+        <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="login.html">Pinjam</a>
+                <a class="collapse-item" href="register.html">Daftar Peminjaman</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Master</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseDataMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="login.html">Bidang</a>
                 <a class="collapse-item" href="register.html">Sub Kegiatan</a>
