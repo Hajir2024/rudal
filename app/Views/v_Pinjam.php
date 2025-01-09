@@ -1,7 +1,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?> &raquo; <span class="text-muted">Pinjam</span></h4>
-    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pinjam"><i class="fas fa-plus"></i> PINJAM</button>
+    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pinjam"><i class="fas fa-plus"></i> PINJAMAN</button>
 </div>
 <hr>
 <!-- Content Row -->
