@@ -19,7 +19,18 @@ class Peminjaman extends BaseController
         $this->subkegiatan = new M_SubKegiatan();
     }
 
-    public function index()
+    public function Pinjam()
+    {
+        $data = [
+            'title' => 'Peminjaman',
+            'dokumen' => $this->dokumen->getDataDokumen(),
+            'bidang' => $this->bidang->getDataBidang(),
+            'subkeg' => $this->subkegiatan->getDataSubKeg(),
+        ];
+        return $this->template->load('v_Pinjam', $data);
+    }
+
+    public function DaftarPeminjam()
     {
         $data = [
             'title' => 'PEMINJAMAN',
@@ -27,7 +38,7 @@ class Peminjaman extends BaseController
             'bidang' => $this->bidang->getDataBidang(),
             'subkeg' => $this->subkegiatan->getDataSubKeg(),
         ];
-        return $this->template->load('v_Peminjaman', $data);
+        return $this->template->load('v_DaftarPeminjam', $data);
     }
 
     public function simpan()

@@ -133,13 +133,6 @@
                 visible: false
             }],
             dom: '<"d-flex justify-content-between align-items-center mb-3"Blf>rt<"d-flex justify-content-between align-items-center mt-3"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
- // Table, Info, and Pagination
-            // Entries(l),
-            // Buttons(B),
-            // Filter(f),
-            // Table(t),
-            // Info(i),
-            // Pagination(p)
             buttons: [{
                     extend: 'pdfHtml5',
                     message: '',
@@ -158,10 +151,8 @@
                         doc.styles.tableHeader.fontSize = 10;
                         doc.styles.title.fontSize = 20;
                         doc.styles.title.bold = true;
-
                         // Remove spaces around page title
                         doc.content[0].text = doc.content[0].text.trim();
-
                         // Footer customization
                         doc.footer = function(currentPage, pageCount) {
                             return {
@@ -235,26 +226,12 @@
                 }
             ]
         });
-    });
-
-    showTime();
-</script>
-
-<script>
-    $(document).ready(function() {
-        new DataTable('#myTable', {
+        new DataTable('#TablePinjam', {
             columnDefs: [{
-                targets: [4, 6, 7, 8, 9, 10],
+                // targets: [],
                 visible: false
             }],
             dom: '<"d-flex justify-content-between align-items-center mb-3"Blf>rt<"d-flex justify-content-between align-items-center mt-3"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
- // Table, Info, and Pagination
-            // Entries(l),
-            // Buttons(B),
-            // Filter(f),
-            // Table(t),
-            // Info(i),
-            // Pagination(p)
             buttons: [{
                     extend: 'pdfHtml5',
                     message: '',
@@ -273,10 +250,8 @@
                         doc.styles.tableHeader.fontSize = 10;
                         doc.styles.title.fontSize = 20;
                         doc.styles.title.bold = true;
-
                         // Remove spaces around page title
                         doc.content[0].text = doc.content[0].text.trim();
-
                         // Footer customization
                         doc.footer = function(currentPage, pageCount) {
                             return {

@@ -15,7 +15,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item <?= ($title == 'DASHBOARD') ? 'active' : '' ?>">
+    <li class="nav-item <?= ($title == 'Dashboard') ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url('/') ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -25,12 +25,12 @@
     <hr class="sidebar-divider">
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- Nav Item - Charts -->
-    <li class="nav-item <?= ($title == 'DOKUMEN') ? 'active' : '' ?> ">
+    <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
         <a class="nav-link" href="<?= base_url('Dokumen') ?>">
             <i class="fas fa-fw fa-book"></i>
             <span>Dokumen</span></a>
     </li>
-    
+
     <!-- Nav Item - Charts
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
@@ -40,26 +40,26 @@
     </li> -->
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item <?= ($title == 'Peminjaman') ? 'active' : '' ?> ">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
             aria-expanded="true" aria-controls="collapsePeminjaman">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-hand-holding"></i>
             <span>Peminjaman</span>
         </a>
         <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPeminjaman" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= base_url('Peminjaman') ?>">Pinjam</a>
-                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>">Daftar Peminjaman</a>
+                <a class="collapse-item" href="<?= base_url('Pinjam') ?>">Pinjam</a>
+                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>">Daftar Peminjam</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
-            aria-expanded="true" aria-controls="collapseDataMaster">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Data Master</span>
+    <li class="nav-item <?= ($title == 'Data Master') ? 'active' : '' ?> "">
+        <a class=" nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
+        aria-expanded="true" aria-controls="collapseDataMaster">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Data Master</span>
         </a>
         <div id="collapseDataMaster" class="collapse" aria-labelledby="headingDataMaster" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
