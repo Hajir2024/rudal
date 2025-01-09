@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('/') ?>">
@@ -42,14 +42,14 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
+            aria-expanded="true" aria-controls="collapsePeminjaman">
+            <i class="fas fa-fw fa-chart-area"></i>
             <span>Peminjaman</span>
         </a>
-        <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPeminjaman" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Pinjam</a>
-                <a class="collapse-item" href="register.html">Daftar Peminjaman</a>
+                <a class="collapse-item" href="<?= base_url('Peminjaman') ?>">Pinjam</a>
+                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>">Daftar Peminjaman</a>
             </div>
         </div>
     </li>
@@ -57,14 +57,14 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
-            aria-expanded="true" aria-controls="collapsePages">
+            aria-expanded="true" aria-controls="collapseDataMaster">
             <i class="fas fa-fw fa-folder"></i>
             <span>Data Master</span>
         </a>
-        <div id="collapseDataMaster" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseDataMaster" class="collapse" aria-labelledby="headingDataMaster" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Bidang</a>
-                <a class="collapse-item" href="register.html">Sub Kegiatan</a>
+                <a class="collapse-item" href="#">Bidang</a>
+                <a class="collapse-item" href="#">Sub Kegiatan</a>
             </div>
         </div>
     </li>
