@@ -54,7 +54,6 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-
         // E.g.: $this->session = service('session');
         // Memuat Library Template
         $this->template = new Template();

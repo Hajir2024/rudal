@@ -13,6 +13,13 @@ class M_SubKegiatan extends Model
 
     public function getDataSubKeg()
     {
-        return $this->findAll();
+        return $this->select('
+            sub_kegiatans.*, 
+            bidangs.bidang
+        ')
+            ->join('bidangs', 'bidangs.id = sub_kegiatans.id_bid', 'left')
+            ->join('sub_kegiatans as sk', 'sk.id = sub_kegiatans.id_bid', 'left') // alias untuk sub_kegiatans
+            ->orderBy('bidangs.id', 'ASC') // pastikan menggunakan sub_kegiatans atau sk
+            ->findAll();
     }
 }
