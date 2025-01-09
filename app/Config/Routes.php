@@ -17,6 +17,7 @@ $routes->get('Dokumen/detail/(:num)', 'Dokumen::detail/$1');
 $routes->post('Dokumen/getDokumenById', 'Dokumen::getDokumenById');
 $routes->post('Dokumen/update', 'Dokumen::update');
 $routes->post('Peminjaman/simpan', 'Peminjaman::simpan');
+
 // File Upload
 // $routes->get('/', 'FileUploadController::index');
 $routes->post('upload', 'FileUploadController::upload');
