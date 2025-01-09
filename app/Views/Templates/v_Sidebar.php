@@ -63,8 +63,8 @@
         </a>
         <div id="collapseDataMaster" class="collapse" aria-labelledby="headingDataMaster" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Bidang</a>
-                <a class="collapse-item" href="#">Sub Kegiatan</a>
+                <a class="collapse-item" href="<?= base_url('Bidang') ?>">Bidang</a>
+                <a class="collapse-item" href="<?= base_url('SubKegiatan') ?>">Sub Kegiatan</a>
             </div>
         </div>
     </li>

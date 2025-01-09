@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Dashboard::index');
 $routes->get('Dokumen', 'Dokumen::index');
+$routes->get('Bidang', 'DataMaster::Bidang');
+$routes->get('SubKegiatan', 'DataMaster::SubKegiatan');
 $routes->get('Pinjam', 'Peminjaman::Pinjam');
 $routes->get('DaftarPeminjam', 'Peminjaman::DaftarPeminjam');
 $routes->post('Dokumen/simpan', 'Dokumen::simpan');
