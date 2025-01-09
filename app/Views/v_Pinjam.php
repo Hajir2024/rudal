@@ -1,6 +1,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?></h4>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?> &raquo; <span class="text-muted">Pinjam</span></h4>
     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pinjam"><i class="fas fa-plus"></i> PINJAM</button>
 </div>
 <hr>
@@ -60,18 +60,6 @@
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php endif; ?>
-                    <a href="#" class="badge badge-success btn-edit" data-id="<?= $r['id'] ?>" data-placement="left" title="Edit">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#" class="badge badge-warning btn-detail" data-id="<?= $r['id'] ?>" data-placement="top" title="Detail">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    <a href="<?= base_url('public/uploads/' . $r['file'] . '') ?>" target="_blank" class="badge badge-primary" data-placement="down" title="Download">
-                        <i class="fas fa-download"></i>
-                    </a>
-                    <a href="#" class="badge badge-danger btn-delete" data-id="<?= $r['id'] ?>" data-placement="right" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>
