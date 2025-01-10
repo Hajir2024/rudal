@@ -29,7 +29,7 @@ class Peminjaman extends BaseController
     {
         $data = [
             'title' => 'Peminjaman',
-            'dokumen' => $this->dokumen->getDataDokumen(),
+            'peminjaman' => $this->peminjaman->getDataPeminjaman(),
         ];
         return $this->template->load('v_DaftarPeminjam', $data);
     }

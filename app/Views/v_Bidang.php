@@ -1,11 +1,11 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?></h4>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-folder"></i> <?= $title ?> &raquo; <span class="text-muted"> Bidang</span></h4>
 </div>
 <hr>
 <div class="row text-gray-900"">
     <div class=" col-md-6">
-    <table id="TablePinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+    <table id="TableBidang" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
         <thead>
             <tr>
                 <th class="text-center">NO</th>
@@ -35,19 +35,19 @@
             <!-- Kolom pertama -->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="kd_rak">Nama Bidang</label>
-                    <input type="text" class="form-control form-control-sm" id="kd_rak" name="kd_rak" autocomplete="off">
+                    <label for="bidang">Nama Bidang</label>
+                    <input type="text" class="form-control form-control-sm" id="bidang" name="bidang" autocomplete="off">
                 </div>
             </div>
             <!-- Kolom kedua -->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="jenis_belanja">Kode Bidang</label>
-                    <input type="text" class="form-control form-control-sm" id="jenis_belanja" name="jenis_belanja" autocomplete="off">
+                    <label for="kode">Kode Bidang</label>
+                    <input type="text" class="form-control form-control-sm" id="kode" name="kode" autocomplete="off">
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
+        <div class="">
             <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
                 <i class="fas fa-times"></i> Batal</button>
             <button type="submit" class="btn btn-sm btn-primary"> <i class="fas fa-save"></i> Tambah</button>

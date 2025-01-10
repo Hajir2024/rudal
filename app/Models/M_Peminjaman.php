@@ -18,4 +18,14 @@ class M_Peminjaman extends Model
         'ket',
         'status'
     ];
+    public function getDataPeminjaman()
+    {
+        return $this->select('
+            peminjamans.*, 
+            dokumens.id as dokumen_id
+        ')
+            ->join('dokumens', 'dokumens.id = peminjamans.id_dokumen', 'left') // Tambahkan join ke tabel dokumens
+            ->orderBy('dokumens.id', 'ASC')
+            ->findAll();
+    }
 }

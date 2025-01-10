@@ -1,15 +1,16 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?></h4>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-fw fa-hand-holding"></i> <?= $title ?> &raquo; <span class="text-muted"> Daftar Peminjam</span></h4>
 </div>
 <hr>
 
-<table id="TablePinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+<table id="TableDaftarPeminjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
     <thead>
         <tr>
             <th class="text-center">NO</th>
             <th class="text-center">Nama</th>
             <th class="text-center">NIP</th>
+            <th class="text-center">Unit Kerja/Bidang</th>
             <th class="text-center">Tanggal Peminjaman</th>
             <th class="text-center">No. HP</th>
             <th class="text-center">Keterangan</th>
@@ -18,14 +19,17 @@
     </thead>
     <tbody>
         <?php $i = 1; ?>
+        <?php foreach ($peminjaman as $r): ?>
             <tr>
                 <td class="text-center"><?= $i++ ?></td>
-                <td class="text-center">Aji</td>
-                <td class="text-center">123</td>
-                <td>12-12-2012</td>
-                <td>0867</td>
-                <td>PINJAM DULU 100</td>
+                <td class="text-center"><?= $r['nama'] ?></td>
+                <td class="text-center"><?= $r['nip'] ?></td>
+                <td><?= $r['unit_kerja'] ?></td>
+                <td><?= $r['no_hp'] ?></td>
+                <td><?= $r['tgl_pinjam'] ?></td>
+                <td><?= $r['ket'] ?></td>
                 <td></td>
             </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

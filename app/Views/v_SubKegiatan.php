@@ -1,11 +1,11 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-book"></i> <?= $title ?></h4>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-folder"></i> <?= $title ?> &raquo; <span class="text-muted"> Sub Kegiatan</span></h4>
 </div>
 <hr>
 <div class="row text-gray-900"">
     <div class=" col-md-6">
-    <table id="TablePinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+    <table id="TableSubKegiatan" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
         <thead>
             <tr>
                 <th class="text-center">NO</th>
@@ -35,7 +35,7 @@
             <!-- Kolom pertama -->
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="editBidang">Bidang</label>
+                    <label for="bidang">Bidang</label>
                     <select class="form-control form-control-sm id_bid" id="id_bid" name="id_bid" autocomplete="off">
                         <option value="">Pilih Bidang</option>
                         <?php $no = 1; ?>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
+        <div class="">
             <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
                 <i class="fas fa-times"></i> Batal</button>
             <button type="submit" class="btn btn-sm btn-primary"> <i class="fas fa-save"></i> Tambah</button>
