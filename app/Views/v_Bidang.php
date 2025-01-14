@@ -5,7 +5,7 @@
 <hr>
 <div class="row text-gray-900"">
     <div class=" col-md-6">
-    <table id="TableBidang" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+    <table id="TablePinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
         <thead>
             <tr>
                 <th class="text-center">NO</th>
