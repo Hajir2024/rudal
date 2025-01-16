@@ -14,7 +14,7 @@
             <th class="text-center">Tanggal Peminjaman</th>
             <th class="text-center">No. HP</th>
             <th class="text-center">Keterangan</th>
-            <th class="text-center">Jumlah Dokumen Yang Di Pinjam</th>
+            <th class="text-center">Jumlah Dokumen Yang Di </th>
         </tr>
     </thead>
     <tbody>
