@@ -83,4 +83,66 @@ class Peminjaman extends BaseController
         session()->setFlashdata('success', 'Data peminjaman berhasil disimpan!');
         return redirect()->to('/Pinjam'); // Sesuaikan dengan route yang Anda inginkan
     }
+
+    public function update()
+    {
+        $data = [
+            'kd_rak'        => $this->request->getPost('kd_rak'),
+            'kd_box'        => $this->request->getPost('kd_box') . $this->request->getPost('no_box'),
+            'no_box'        => $this->request->getPost('no_box'),
+            'no_sp2d'       => $this->request->getPost('no_sp2d'),
+            'tgl_sp2d'      => $this->request->getPost('tgl_sp2d'),
+            'no_kontrak'    => $this->request->getPost('no_kontrak'),
+            'nilai_kontrak' => preg_replace('/\D/', '', $this->request->getPost('nilai_kontrak')),
+            'jenis_belanja' => $this->request->getPost('jenis_belanja'),
+            'id_bid'        => $this->request->getPost('id_bid'),
+            'id_subkeg'     => $this->request->getPost('id_subkeg'),
+            'tahun'         => $this->request->getPost('tahun'),
+            'ket'           => $this->request->getPost('ket'),
+        ];
+        // Handle file upload
+
+        $id     = $this->request->getPost('id');
+        $id_bid = $this->request->getPost('id_bid');
+        $kd_rak = $this->request->getPost('kd_rak');
+        $kd_box = $this->request->getPost('kd_box');
+        $no_box = $this->request->getPost('no_box');
+        $tahun  = $this->request->getPost('tahun');
+        $file   = $this->request->getFile('file');
+        $typeFile = $file->getClientExtension();
+
+        $dokumenLama = $this->dokumen->getDokumenById($id);
+        $namaFileBaru = getNamaFile($id_bid, $kd_rak, $kd_box, $no_box, "pdf");
+        $fileLama = $this->request->getPost('oldFile');
+        // dd($dokumenLama);
+
+        // CASE 1: Tidak ada perubahan file jika user tidak upload file baru
+        if (!$file || !$file->isValid() || $file->hasMoved()) {
+            // Cek apakah ada perubahan pada kolom form tertentu
+            if ($dokumenLama['kd_rak'] != $kd_rak || $dokumenLama['kd_box'] != ($kd_box . $no_box) || $dokumenLama['tahun'] != $tahun) {
+                // CASE 2: Update nama file jika ada perubahan pada bidang, kode rak, box, atau tahun
+                $typeFile = pathinfo($fileLama, PATHINFO_EXTENSION);
+                // Ganti nama file di folder uploads
+                if (file_exists("public/uploads/" . $fileLama)) {
+                    rename("public/uploads/" . $fileLama, "public/uploads/" . $namaFileBaru);
+                }
+                $data['file'] = $namaFileBaru;
+            }
+        } else {
+            // CASE 3: User mengganti file/upload file baru
+            // Hapus file lama jika ada
+            if ($fileLama && file_exists("public/uploads/" . $fileLama)) {
+                unlink("public/uploads/" . $fileLama);
+            }
+            // Upload file baru
+            $file->move('public/uploads', $namaFileBaru);
+            $data['file'] = $namaFileBaru;
+        }
+
+        if ($this->dokumen->update($id, $data)) {
+            return redirect()->to(base_url('Dokumen'))->with('success', 'Data Berhasil Diperbarui');
+        } else {
+            return redirect()->to(base_url('Dokumen'))->with('error', 'Gagal Memperbarui Data');
+        }
+    }
 }
