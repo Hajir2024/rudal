@@ -28,7 +28,7 @@
                 <td><?= $r['no_hp'] ?></td>
                 <td><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['ket'] ?></td>
-                <td><?= $r['total_dokumen'] ?></td>
+                <td><?= $r['total_dokumen']  ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
