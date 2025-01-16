@@ -22,9 +22,11 @@ class M_Peminjaman extends Model
     {
         return $this->select('
             peminjamans.*, 
-            dokumens.id as dokumen_id
+            dokumens.id as dokumen_id,
+            COUNT(*) AS total_dokumen
         ')
-            ->join('dokumens', 'dokumens.id = peminjamans.id_dokumen', 'left') // Tambahkan join ke tabel dokumens
+            ->join('dokumens', 'dokumens.id = peminjamans.id_dokumen', 'left')
+            ->groupBy('peminjamans.nama')
             ->orderBy('dokumens.id', 'ASC')
             ->findAll();
     }
