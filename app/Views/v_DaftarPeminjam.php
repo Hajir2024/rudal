@@ -28,8 +28,28 @@
                 <td><?= $r['no_hp'] ?></td>
                 <td><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['ket'] ?></td>
-                <td><?= $r['total_dokumen']  ?></td>
+                <td class="text-center"> <a href="#" class="badge badge-info" data-toggle="modal" data-target="#detailPinjam" data-id="<?= $r['id'] ?>" rel="noopener noreferrer"><?= $r['total_dokumen']  ?></a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<div class="modal fade" id="detailPinjam" tabindex="-1" role="dialog" aria-labelledby="detailPinjamLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailPinjamLabel">Detail Peminjama</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your modal content here -->
+                <p>Details will be shown here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
