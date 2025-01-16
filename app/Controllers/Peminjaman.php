@@ -78,6 +78,7 @@ class Peminjaman extends BaseController
             ];
             // Simpan data peminjaman
             $this->peminjaman->save($data);
+            $this->dokumen->update($id, ['status' => 'TIDAK ADA']);
         }
         // Redirect setelah berhasil menyimpan
         session()->setFlashdata('success', 'Data peminjaman berhasil disimpan!');

@@ -28,10 +28,7 @@
                 <td><?= $r['no_hp'] ?></td>
                 <td><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['ket'] ?></td>
-                <td class="text-center">
-                    <a href="#" class="badge badge-warning btn-detail" data-id="<?= $r['id'] ?>" data-placement="top" title="Detail">
-                        <i class="fas fa-eye"></i>
-                </td>
+                <td></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
