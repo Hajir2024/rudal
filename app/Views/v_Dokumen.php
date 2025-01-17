@@ -56,7 +56,7 @@
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center">
                     <?php if ($r['status'] == 'TIDAK ADA') : ?>
-                        <a href="#" class="badge badge-info" data-placement="left" title="Info Peminjaman">
+                        <a href="#" class="badge badge-info" data-toggle="modal" data-target="#infoPinjam" data-id="<?= $r['id'] ?>" rel="noopener noreferrer">
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php endif; ?>
@@ -408,6 +408,74 @@
     </div>
 </div>
 
+<!-- INFO MODAL -->
+<div class="modal fade" id="infoPinjam" tabindex="-1" role="dialog" aria-labelledby="infoPinjamLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoPinjamLabel">Info Peminjaman</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-sm table-borderless table-striped text-gray-900">
+                    <tr>
+                        <th style="width: 50%;">KODE RAK</th>
+                        <th style="width: 50%;">KODE BOX</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></span></td>
+                        <td><span id="" class="font-italic"></span></td>
+                    </tr>
+                    <tr>
+                        <th>NO SP2D</th>
+                        <th>TANGGAL SP2D</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></td>
+                        <td><span id="" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>NOMOR KONTRAK</th>
+                        <th>NILAI KONTRAK</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></td>
+                        <td><span id="" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>JENIS BELANJA</th>
+                        <th>TAHUN</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></td>
+                        <td><span id="" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>BIDANG</th>
+                        <th>SUB KEGIATAN</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></td>
+                        <td><span id="" class="font-italic"></td>
+                    </tr>
+                    <tr>
+                        <th>KETERANGAN/URAIAN</th>
+                        <th>DOKUMEN DIGITAL</th>
+                    </tr>
+                    <tr>
+                        <td><span id="" class="font-italic"></td>
+                        <td><span id="" class="font-italic"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Script untuk menampilkan detail dokumen -->
 <script src="<?= base_url('public') ?>/js/jquery-3.6.0.min.js"></script>
 <script>

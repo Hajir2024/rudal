@@ -44,8 +44,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Add your modal content here -->
-                <p>Details will be shown here.</p>
+                <table id="TableModalPinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Kode Rak</th>
+                            <th class="text-center">No. SP2D</th>
+                            <th class="text-center">Keterangan/Uraian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; ?>
+                        <tr>
+                            <td class="text-center"><?= $i++ ?></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
