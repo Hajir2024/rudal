@@ -74,32 +74,13 @@
 <script src="<?= base_url('public/js/dataTables') ?>/buttons.print.min.js"></script>
 <script src="<?= base_url('public/js/dataTables') ?>/buttons.colVis.min.js"></script>
 
-
-
 <!-- Chained Select -->
 <script src="<?= base_url('public/') ?>js/jquery.chained.js"></script>
 
 <!-- Costum Script -->
 <script src="<?= base_url('public/') ?>js/my_script.js"></script>
 
-<!-- <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            columnDefs: [{
-                targets: -1,
-                visible: false
-            }],
-            layout: {
-                topStart: {
-                    buttons: [{
-                        extend: 'colvis',
-                        postfixButtons: ['colvisRestore']
-                    }]
-                }
-            }
-        });
-    });
-
+<script>
     $(function() {
         $('[data-toggle="tooltip"]').tooltip()
     })
@@ -123,7 +104,7 @@
     }
 
     $("#id_subkeg").chained("#id_bid");
-</script> -->
+</script>
 
 <script>
     $(document).ready(function() {
@@ -216,7 +197,7 @@
                     className: 'btn btn-light',
                     title: 'Data Arsip Dokumen',
                     titleAttr: "Export Excel"
-                }, 
+                },
                 {
                     extend: 'colvis',
                     text: '<img src="<?= base_url('public/img/list.png') ?>" width="25">', // Custom button icon
@@ -315,7 +296,7 @@
                     className: 'btn btn-light',
                     title: 'Data Arsip Dokumen',
                     titleAttr: "Export Excel"
-                }, 
+                },
                 {
                     extend: 'colvis',
                     text: '<img src="<?= base_url('public/img/list.png') ?>" width="25">', // Custom button icon
