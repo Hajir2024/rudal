@@ -8,100 +8,6 @@ function formatAngka(input) {
   input.value = formattedValue;
 }
 
-// VALIDASI NIP
-function validateNIPAndNoHP() {
-  const nipInput = document.getElementById("nip");
-  const tglInput = document.getElementById("tgl_pinjam");
-  const noHpInput = document.getElementById("no_hp");
-  const nipWarning = document.getElementById("nipWarning");
-  const tglWarning = document.getElementById("tglWarning");
-  const noHpWarning = document.getElementById("noHpWarning");
-  const submitBtn = document.getElementById("btnPinjam");
-  const form = nipInput.closest("form"); // Mendapatkan elemen form
-  const tglPinjamInput = document.getElementById("tgl_pinjam");
-
-  // Validasi saat pengguna mengetik NIP
-  nipInput.addEventListener("input", function () {
-    let value = this.value.replace(/[^0-9-]/g, ""); // Izinkan hanya angka dan simbol '-'
-    this.value = value.substring(0, 18); // Batas maksimal 18 karakter
-    nipWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
-  });
-
-  // Validasi saat pengguna mengetik nomor HP
-  tglInput.addEventListener("input", function () {
-    tglWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
-  });
-  // Validasi saat pengguna mengetik nomor HP
-  noHpInput.addEventListener("input", function () {
-    let value = this.value.replace(/[^0-9]/g, ""); // Hanya izinkan angka
-    this.value = value.substring(0, 13); // Batas maksimal 13 karakter
-    noHpWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
-  });
-
-  // Validasi saat tombol Submit ditekan
-  submitBtn.addEventListener("click", function (e) {
-    e.preventDefault(); // Mencegah pengiriman form jika validasi gagal
-
-    const nipValue = nipInput.value.trim();
-    const onlyNipDigits = nipValue.replace(/-/g, ""); // Hilangkan simbol '-' dan hitung hanya angka
-
-    const tglValue = tglInput.value.trim();
-    const noHpValue = noHpInput.value.trim();
-    const onlyNoHpDigits = noHpValue.replace(/[^0-9]/g, ""); // Hilangkan semua karakter non-angka
-
-    // Validasi: NIP tidak boleh kosong
-    if (nipValue.length === 0) {
-      nipWarning.textContent = "NIP tidak boleh kosong.";
-      return;
-    }
-
-    if (tglValue.length === 0) {
-      tglWarning.textContent = "Tanggal Peminjaman tidak boleh kosong.";
-      return;
-    }
-
-    // Validasi: Jika hanya simbol '-', valid
-    if (/^-+$/.test(nipValue)) {
-      // Anggap valid jika hanya karakter '-'
-      nipWarning.textContent = ""; // Tidak ada pesan kesalahan
-    }
-    // Validasi: NIP harus 18 digit angka (jika tidak hanya simbol '-')
-    else if (onlyNipDigits.length !== 18) {
-      nipWarning.textContent = "NIP harus 18 digit angka.";
-      return;
-    }
-
-    // Validasi: Nomor HP tidak boleh kosong
-    if (noHpValue.length === 0) {
-      noHpWarning.textContent = "Nomor HP tidak boleh kosong.";
-      return;
-    }
-
-    // Validasi: Nomor HP harus hanya angka dan panjangnya harus antara 11 hingga 13 digit
-    if (onlyNoHpDigits.length < 11 || onlyNoHpDigits.length > 13) {
-      noHpWarning.textContent = "Nomor HP harus antara 11 hingga 13 digit";
-      return;
-    }
-
-    // Jika semua validasi terpenuhi, kosongkan warning dan lanjutkan
-    nipWarning.textContent = "";
-    noHpWarning.textContent = "";
-    tglWarning.textContent = "";
-
-    // Cek apakah tgl_pinjam valid menggunakan validasi HTML (required)
-    if (!tglPinjamInput.checkValidity()) {
-      alert("Tanggal Peminjaman harus diisi.");
-      return;
-    }
-
-    // Kirim form secara eksplisit
-    form.submit();
-  });
-}
-
-// Panggil fungsi validasi
-validateNIPAndNoHP();
-
 // DATA KODE DAN TAHUN
 document.addEventListener("DOMContentLoaded", function () {
   // Mendapatkan semua elemen dengan class 'id_bid' dan 'kd_box'
@@ -220,6 +126,100 @@ $(document).ready(function () {
     });
   });
 });
+
+// VALIDASI NIP
+function validateNIPAndNoHP() {
+  const nipInput = document.getElementById("nip");
+  const tglInput = document.getElementById("tgl_pinjam");
+  const noHpInput = document.getElementById("no_hp");
+  const nipWarning = document.getElementById("nipWarning");
+  const tglWarning = document.getElementById("tglWarning");
+  const noHpWarning = document.getElementById("noHpWarning");
+  const submitBtn = document.getElementById("btnPinjam");
+  const form = nipInput.closest("form"); // Mendapatkan elemen form
+  const tglPinjamInput = document.getElementById("tgl_pinjam");
+
+  // Validasi saat pengguna mengetik NIP
+  nipInput.addEventListener("input", function () {
+    let value = this.value.replace(/[^0-9-]/g, ""); // Izinkan hanya angka dan simbol '-'
+    this.value = value.substring(0, 18); // Batas maksimal 18 karakter
+    nipWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
+  });
+
+  // Validasi saat pengguna mengetik nomor HP
+  tglInput.addEventListener("input", function () {
+    tglWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
+  });
+  // Validasi saat pengguna mengetik nomor HP
+  noHpInput.addEventListener("input", function () {
+    let value = this.value.replace(/[^0-9]/g, ""); // Hanya izinkan angka
+    this.value = value.substring(0, 13); // Batas maksimal 13 karakter
+    noHpWarning.textContent = ""; // Hapus peringatan saat pengguna mengetik
+  });
+
+  // Validasi saat tombol Submit ditekan
+  submitBtn.addEventListener("click", function (e) {
+    e.preventDefault(); // Mencegah pengiriman form jika validasi gagal
+
+    const nipValue = nipInput.value.trim();
+    const onlyNipDigits = nipValue.replace(/-/g, ""); // Hilangkan simbol '-' dan hitung hanya angka
+
+    const tglValue = tglInput.value.trim();
+    const noHpValue = noHpInput.value.trim();
+    const onlyNoHpDigits = noHpValue.replace(/[^0-9]/g, ""); // Hilangkan semua karakter non-angka
+
+    // Validasi: NIP tidak boleh kosong
+    if (nipValue.length === 0) {
+      nipWarning.textContent = "NIP tidak boleh kosong.";
+      return;
+    }
+
+    if (tglValue.length === 0) {
+      tglWarning.textContent = "Tanggal Peminjaman tidak boleh kosong.";
+      return;
+    }
+
+    // Validasi: Jika hanya simbol '-', valid
+    if (/^-+$/.test(nipValue)) {
+      // Anggap valid jika hanya karakter '-'
+      nipWarning.textContent = ""; // Tidak ada pesan kesalahan
+    }
+    // Validasi: NIP harus 18 digit angka (jika tidak hanya simbol '-')
+    else if (onlyNipDigits.length !== 18) {
+      nipWarning.textContent = "NIP harus 18 digit angka.";
+      return;
+    }
+
+    // Validasi: Nomor HP tidak boleh kosong
+    if (noHpValue.length === 0) {
+      noHpWarning.textContent = "Nomor HP tidak boleh kosong.";
+      return;
+    }
+
+    // Validasi: Nomor HP harus hanya angka dan panjangnya harus antara 11 hingga 13 digit
+    if (onlyNoHpDigits.length < 11 || onlyNoHpDigits.length > 13) {
+      noHpWarning.textContent = "Nomor HP harus antara 11 hingga 13 digit";
+      return;
+    }
+
+    // Jika semua validasi terpenuhi, kosongkan warning dan lanjutkan
+    nipWarning.textContent = "";
+    noHpWarning.textContent = "";
+    tglWarning.textContent = "";
+
+    // Cek apakah tgl_pinjam valid menggunakan validasi HTML (required)
+    if (!tglPinjamInput.checkValidity()) {
+      alert("Tanggal Peminjaman harus diisi.");
+      return;
+    }
+
+    // Kirim form secara eksplisit
+    form.submit();
+  });
+}
+
+// Panggil fungsi validasi
+validateNIPAndNoHP();
 
 function showTime() {
   var date = new Date();

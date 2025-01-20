@@ -56,7 +56,7 @@
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center">
                     <?php if ($r['status'] == 'TIDAK ADA') : ?>
-                        <a href="#" class="badge badge-info" data-toggle="modal" data-target="#infoPinjam" data-id="<?= $r['id'] ?>" rel="noopener noreferrer">
+                        <a href="#" class="badge badge-info" data-toggle="modal" data-target="#infoPinjam" data-id="<?= $r['id'] ?>" data-placement="left" title="Info" rel="noopener noreferrer">
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php endif; ?>
