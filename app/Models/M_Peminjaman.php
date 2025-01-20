@@ -26,7 +26,7 @@ class M_Peminjaman extends Model
             COUNT(*) AS total_dokumen
         ')
             ->join('dokumens', 'dokumens.id = peminjamans.id_dokumen', 'left')
-            ->groupBy('peminjamans.nama')
+            ->groupBy('peminjamans.nip')
             ->orderBy('dokumens.id', 'ASC')
             ->findAll();
     }

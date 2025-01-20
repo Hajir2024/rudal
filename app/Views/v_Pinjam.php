@@ -107,27 +107,30 @@
                         <!-- Kolom pertama -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="kd_rak">Nama</label>
+                                <label for="nama">Nama</label>
                                 <input type="text" class="form-control form-control-sm" id="nama" name="nama" autocomplete="off">
                             </div>
                             <div class="form-group">
-                                <label for="no_box">NIP</label>
-                                <input type="number" class="form-control form-control-sm" id="nip" name="nip" autocomplete="off" min="1" max="20">
+                                <label for="nip">NIP/NIK</label>
+                                <input type="text" class="form-control form-control-sm" id="nip" name="nip" autocomplete="off">
+                                <small id="nipWarning" class="text-danger"></small>
                             </div>
                             <div class="form-group">
-                                <label for="tgl_sp2d">Tanggal Peminjaman</label>
-                                <input type="date" class="form-control form-control-sm" id="tgl_pinjam" name="tgl_pinjam" autocomplete="off">
+                                <label for="tgl_pinjam">Tanggal Peminjaman</label>
+                                <input type="date" class="form-control form-control-sm" id="tgl_pinjam" name="tgl_pinjam" autocomplete="off" required>
+                                <small id="tglWarning" class="text-danger"></small>
                             </div>
                         </div>
                         <!-- Kolom kedua -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="jenis_belanja">Unit Kerja/Bidang</label>
-                                <input type="text" class="form-control form-control-sm" id="unit_kerja" name="unit_kerja" autocomplete="off">
+                                <label for="unit_kerja">Unit Kerja/Bidang</label>
+                                <input type="text" class="form-control form-control-sm" id="unit_kerja" name="unit_kerja" autocomplete="off" required>
                             </div>
                             <div class="form-group">
-                                <label for="no_kontrak">No. HP</label>
+                                <label for="no_hp">No. HP</label>
                                 <input type="text" class="form-control form-control-sm" id="no_hp" name="no_hp" autocomplete="off">
+                                <small id="noHpWarning" class="text-danger"></small>
                             </div>
                             <div class="form-group">
                                 <label for="ket">Keterangan</label>
@@ -139,7 +142,7 @@
                         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">
                             <i class="fas fa-times"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-sm btn-primary"> <i class="fas fa-save"></i> Simpan</button>
+                        <button id="btnPinjam" type="submit" class="btn btn-sm btn-primary"> <i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>

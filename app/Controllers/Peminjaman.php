@@ -41,10 +41,10 @@ class Peminjaman extends BaseController
         $validation->setRules([
             'selected_ids'  => 'required',
             'nama'          => 'required|string|max_length[120]',
-            'nip'           => 'required|numeric|min_length[1]',
+            'nip'           => 'required|min_length[1]',
             'tgl_pinjam'    => 'required|valid_date',
             'unit_kerja'    => 'required|string|max_length[255]',
-            'no_hp'         => 'required|string|max_length[18]',
+            'no_hp'         => 'required|string|max_length[13]',
             'ket'           => 'required|string|max_length[255]'
         ]);
 

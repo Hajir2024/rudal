@@ -9,7 +9,7 @@
         <tr>
             <th class="text-center">NO</th>
             <th class="text-center">Nama</th>
-            <th class="text-center">NIP</th>
+            <th class="text-center">NIP/NIK</th>
             <th class="text-center">Unit Kerja/Bidang</th>
             <th class="text-center">Tanggal Peminjaman</th>
             <th class="text-center">No. HP</th>
@@ -25,8 +25,8 @@
                 <td class="text-center"><?= $r['nama'] ?></td>
                 <td class="text-center"><?= $r['nip'] ?></td>
                 <td><?= $r['unit_kerja'] ?></td>
+                <td class="text-center"><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['no_hp'] ?></td>
-                <td><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center"> <a href="#" class="badge badge-info" data-toggle="modal" data-target="#detailPinjam" data-id="<?= $r['id'] ?>" rel="noopener noreferrer"><?= $r['total_dokumen']  ?></a></td>
             </tr>

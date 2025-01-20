@@ -45,6 +45,7 @@
 </div>
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url('public') ?>/vendor/jquery/jquery.min.js"></script>
+
 <script src="<?= base_url('public') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -82,28 +83,8 @@
 <!-- Costum Script -->
 <script src="<?= base_url('public/') ?>js/my_script.js"></script>
 
-<!-- <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            columnDefs: [{
-                targets: -1,
-                visible: false
-            }],
-            layout: {
-                topStart: {
-                    buttons: [{
-                        extend: 'colvis',
-                        postfixButtons: ['colvisRestore']
-                    }]
-                }
-            }
-        });
-    });
 
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
+<script>
     function updateFileName() {
         // Ambil elemen input file
         var fileInput = document.getElementById('file');
@@ -123,7 +104,7 @@
     }
 
     $("#id_subkeg").chained("#id_bid");
-</script> -->
+</script>
 
 <script>
     $(document).ready(function() {
