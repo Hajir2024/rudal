@@ -9,7 +9,7 @@
         <tr>
             <th class="text-center">NO</th>
             <th class="text-center">Nama</th>
-            <th class="text-center">NIP</th>
+            <th class="text-center">NIP/NIK</th>
             <th class="text-center">Unit Kerja/Bidang</th>
             <th class="text-center">Tanggal Peminjaman</th>
             <th class="text-center">No. HP</th>
@@ -25,7 +25,7 @@
                 <td class="text-center"><?= $r['nama'] ?></td>
                 <td class="text-center"><?= $r['nip'] ?></td>
                 <td><?= $r['unit_kerja'] ?></td>
-                <td><?= $r['tgl_pinjam'] ?></td>
+                <td class="text-center"><?= $r['tgl_pinjam'] ?></td>
                 <td><?= $r['no_hp'] ?></td>
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center"> <a href="#" class="badge badge-info" data-toggle="modal" data-target="#detailPinjam" data-id="<?= $r['id'] ?>" rel="noopener noreferrer"><?= $r['total_dokumen']  ?></a></td>
@@ -44,8 +44,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Add your modal content here -->
-                <p>Details will be shown here.</p>
+                <table id="TableModalPinjam" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Kode Rak</th>
+                            <th class="text-center">No. SP2D</th>
+                            <th class="text-center">Keterangan/Uraian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; ?>
+                        <tr>
+                            <td class="text-center"><?= $i++ ?></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
