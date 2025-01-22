@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\M_DaftarPeminjam;
 use App\Models\M_Dokumen;
 use App\Models\M_Peminjaman;
 
@@ -9,11 +10,13 @@ class Peminjaman extends BaseController
 {
     protected $dokumen;
     protected $peminjaman;
+    protected $daftarpeminjaman;
 
     public function __construct()
     {
         $this->dokumen = new M_Dokumen();
         $this->peminjaman = new M_Peminjaman();
+        $this->daftarpeminjaman = new M_DaftarPeminjam();
     }
 
     public function Pinjam()
@@ -145,5 +148,43 @@ class Peminjaman extends BaseController
         } else {
             return redirect()->to(base_url('Dokumen'))->with('error', 'Gagal Memperbarui Data');
         }
+    }
+
+    public function info($nip)
+    {
+        if (!ctype_digit($nip)) { // Pastikan NIP hanya terdiri dari angka
+            return $this->response->setJSON(['error' => 'Format NIP tidak valid']);
+        }
+
+        $dataDokumen = $this->daftarpeminjaman->getInfoDokumen($nip);
+
+        if ($dataDokumen) {
+            return $this->response->setJSON($dataDokumen);
+        } else {
+            return $this->response->setJSON(['error' => 'Dokumen yang dipinjam tidak ditemukan']);
+        }
+    }
+
+    public function updateStatus()
+    {
+        // Ambil ID dari request
+        $id = $this->request->getPost('id');
+
+        if (!$id) {
+            return $this->response->setJSON(['error' => 'ID tidak ditemukan']);
+        }
+        // Ambil data peminjaman berdasarkan ID
+        $peminjaman = $this->peminjaman->find($id);
+
+        if (!$peminjaman) {
+            return $this->response->setJSON(['error' => 'Data peminjaman tidak ditemukan']);
+        }
+        // Update status di tabel `peminjamans`
+        $this->peminjaman->update($id, ['status' => 'DI KEMBALIKAN']);
+
+        // Update status di tabel `dokumens`
+        $this->dokumen->update($peminjaman['id_dokumen'], ['status' => 'ADA']);
+
+        return $this->response->setJSON(['message' => 'Status berhasil diperbarui']);
     }
 }

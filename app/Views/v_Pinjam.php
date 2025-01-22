@@ -58,7 +58,7 @@
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center">
                     <?php if ($r['status'] == 'TIDAK ADA') : ?>
-                        <a href="#" class="badge badge-info" data-placement="left" title="Info Peminjaman">
+                        <a href="#" class="badge badge-info" data-placement="left" title="Info Peminjaman" onclick="alert('Dokumen Sedang Tidak Tersedia (Di Pinjam)')">
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php else: ?>

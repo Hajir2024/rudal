@@ -18,6 +18,8 @@ $routes->post('Dokumen/simpan', 'Dokumen::simpan');
 $routes->post('Dokumen/getDokumenById', 'Dokumen::getDokumenById');
 $routes->post('Dokumen/update', 'Dokumen::update');
 $routes->post('Peminjaman/simpan', 'Peminjaman::simpan');
+$routes->get('Peminjaman/info/(:segment)', 'Peminjaman::info/$1');
+$routes->post('Peminjaman/updateStatus', 'Peminjaman::updateStatus');
 
 // File Upload
 // $routes->get('/', 'FileUploadController::index');

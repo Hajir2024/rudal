@@ -31,14 +31,6 @@
             <span>Dokumen</span></a>
     </li>
 
-    <!-- Nav Item - Charts
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Peminjaman</span>
-        </a>
-    </li> -->
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item <?= ($title == 'Peminjaman') ? 'active' : '' ?> ">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
@@ -48,8 +40,8 @@
         </a>
         <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPeminjaman" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= base_url('Pinjam') ?>">Pinjam</a>
-                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>">Daftar Peminjam</a>
+                <a class="collapse-item" href="<?= base_url('Pinjam') ?>"><i class="fas fa-fw fa-hand-holding"></i> Pinjam</a>
+                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>"><i class="fas fa-fw fa-clipboard-list"></i> Daftar Peminjam</a>
             </div>
         </div>
     </li>

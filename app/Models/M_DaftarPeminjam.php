@@ -50,4 +50,22 @@ class M_DaftarPeminjam extends Model
             ->where('dokumens.id', $id) // Memastikan mengambil data berdasarkan ID
             ->first(); // Mengambil satu baris data
     }
+
+    public function getInfoDokumen($nip)
+    {
+        return $this->db->table('dokumens')->select('
+        dokumens.kd_rak, 
+        dokumens.no_sp2d, 
+        dokumens.ket, 
+        peminjamans.id,
+        peminjamans.nama
+    ')
+            ->join('peminjamans', 'peminjamans.id_dokumen = dokumens.id', 'left')
+            ->where([
+                'peminjamans.nip' => $nip,
+                'peminjamans.status' => 'DI PINJAM'
+            ])
+            ->get()
+            ->getResultArray(); // Mengambil data sebagai array
+    }
 }

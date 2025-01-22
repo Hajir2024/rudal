@@ -1,6 +1,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-folder"></i> <?= $title ?> &raquo; <span class="text-muted"> Sub Kegiatan</span></h4>
+    <h4 class="h4 mb-0 text-gray-900"> <i class="fas fa-fw fa-folder"></i> <?= $title ?> &raquo; <span class="text-muted"> Sub Kegiatan</span></h4>
 </div>
 <hr>
 <div class="row text-gray-900"">
