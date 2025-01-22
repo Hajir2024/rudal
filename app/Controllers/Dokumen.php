@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\M_Dokumen;
 use App\Models\M_Bidang;
+use App\Models\M_Peminjaman;
 use App\Models\M_SubKegiatan;
 
 class Dokumen extends BaseController
@@ -11,12 +12,14 @@ class Dokumen extends BaseController
     protected $dokumen;
     protected $bidang;
     protected $subkegiatan;
+    protected $peminjaman;
 
     public function __construct()
     {
         $this->dokumen = new M_Dokumen();
         $this->bidang = new M_Bidang();
         $this->subkegiatan = new M_SubKegiatan();
+        $this->peminjaman = new M_Peminjaman();
     }
 
     public function index()
@@ -182,6 +185,17 @@ class Dokumen extends BaseController
             }
         } else {
             return $this->response->setJSON(['error' => 'Invalid request method'], 405);
+        }
+    }
+
+    public function info($id)
+    {
+        $dataPeminjam = $this->peminjaman->getInfoPeminjam($id);
+        // Cek apakah data ditemukan
+        if ($dataPeminjam) {
+            return $this->response->setJSON($dataPeminjam);
+        } else {
+            return $this->response->setJSON(['error' => 'Data Peminjam tidak ditemukan']);
         }
     }
 }

@@ -30,4 +30,12 @@ class M_Peminjaman extends Model
             ->orderBy('dokumens.id', 'ASC')
             ->findAll();
     }
+
+    function getInfoPeminjam($id)
+    {
+        return $this->db->table('peminjamans')->getWhere([
+            'id_dokumen' => $id,
+            'status' => 'DI PINJAM'
+        ])->getRowArray();
+    }
 }

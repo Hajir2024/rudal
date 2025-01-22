@@ -56,7 +56,7 @@
                 <td><?= $r['ket'] ?></td>
                 <td class="text-center">
                     <?php if ($r['status'] == 'TIDAK ADA') : ?>
-                        <a href="#" class="badge badge-info" data-toggle="modal" data-target="#infoPinjam" data-id="<?= $r['id'] ?>" data-placement="left" title="Info" rel="noopener noreferrer">
+                        <a href="#" class="badge badge-info btn-info" data-id="<?= $r['id'] ?>" data-placement="left" title="Info">
                             <i class="fas fa-info-circle"></i>
                         </a>
                     <?php endif; ?>
@@ -409,11 +409,11 @@
 </div>
 
 <!-- INFO MODAL -->
-<div class="modal fade" id="infoPinjam" tabindex="-1" role="dialog" aria-labelledby="infoPinjamLabel" aria-hidden="true">
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="infoPinjamLabel">Info Peminjaman</h5>
+                <h5 class="modal-title" id="modalInfoLabel"><i class="fas fa-info"></i> Info Peminjaman</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -421,52 +421,28 @@
             <div class="modal-body">
                 <table class="table table-sm table-borderless table-striped text-gray-900">
                     <tr>
-                        <th style="width: 50%;">KODE RAK</th>
-                        <th style="width: 50%;">KODE BOX</th>
+                        <th style="width: 50%;">NAMA PEMINJAM</th>
+                        <th style="width: 50%;">NIP/NIK</th>
                     </tr>
                     <tr>
-                        <td><span id="" class="font-italic"></span></td>
-                        <td><span id="" class="font-italic"></span></td>
+                        <td><span id="nama" class="font-italic"></span></td>
+                        <td><span id="nip_nik" class="font-italic"></span></td>
                     </tr>
                     <tr>
-                        <th>NO SP2D</th>
-                        <th>TANGGAL SP2D</th>
+                        <th>UNIT KERJA</th>
+                        <th>NOMOR HP</th>
                     </tr>
                     <tr>
-                        <td><span id="" class="font-italic"></td>
-                        <td><span id="" class="font-italic"></td>
+                        <td><span id="unit_kerja" class="font-italic"></td>
+                        <td><span id="no_hp" class="font-italic"></td>
                     </tr>
                     <tr>
-                        <th>NOMOR KONTRAK</th>
-                        <th>NILAI KONTRAK</th>
+                        <th>TANGGAL PINJAM</th>
+                        <th>KETERANGAN</th>
                     </tr>
                     <tr>
-                        <td><span id="" class="font-italic"></td>
-                        <td><span id="" class="font-italic"></td>
-                    </tr>
-                    <tr>
-                        <th>JENIS BELANJA</th>
-                        <th>TAHUN</th>
-                    </tr>
-                    <tr>
-                        <td><span id="" class="font-italic"></td>
-                        <td><span id="" class="font-italic"></td>
-                    </tr>
-                    <tr>
-                        <th>BIDANG</th>
-                        <th>SUB KEGIATAN</th>
-                    </tr>
-                    <tr>
-                        <td><span id="" class="font-italic"></td>
-                        <td><span id="" class="font-italic"></td>
-                    </tr>
-                    <tr>
-                        <th>KETERANGAN/URAIAN</th>
-                        <th>DOKUMEN DIGITAL</th>
-                    </tr>
-                    <tr>
-                        <td><span id="" class="font-italic"></td>
-                        <td><span id="" class="font-italic"></td>
+                        <td><span id="tgl_pinjam" class="font-italic"></td>
+                        <td><span id="keterangan" class="font-italic"></td>
                     </tr>
                 </table>
             </div>
@@ -479,6 +455,7 @@
 <!-- Script untuk menampilkan detail dokumen -->
 <script src="<?= base_url('public') ?>/js/jquery-3.6.0.min.js"></script>
 <script>
+    // Detail Dokumen
     $(document).ready(function() {
         // Event ketika tombol detail diklik
         $('.btn-detail').on('click', function() {
@@ -489,6 +466,7 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data);
                     // Jika data ditemukan, isi modal dengan data
                     if (data.error) {
                         alert(data.error); // Jika data tidak ditemukan
@@ -548,5 +526,31 @@
                 }
             });
         });
+
+        $('.btn-info').on('click', function() {
+            var id = $(this).data('id'); // Ambil ID dari data-id link
+            // Melakukan permintaan AJAX ke controller
+            $.ajax({
+                url: '<?= base_url("Dokumen/info") ?>/' + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                    // Jika data ditemukan, isi modal dengan data
+                    if (data.error) {
+                        alert(data.error); // Jika data tidak ditemukan
+                    } else {
+                        $('#nama').text(data.nama);
+                        $('#nip_nik').text(data.nip);
+                        $('#unit_kerja').text(data.unit_kerja);
+                        $('#no_hp').text(data.no_hp);
+                        $('#tgl_pinjam').text(data.tgl_pinjam);
+                        $('#keterangan').text(data.ket);
+                    }
+                    // Tampilkan modal
+                    $('#modalInfo').modal('show');
+                }
+            })
+        })
     });
 </script>
