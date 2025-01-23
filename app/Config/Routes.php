@@ -21,6 +21,12 @@ $routes->post('Peminjaman/simpan', 'Peminjaman::simpan');
 $routes->get('Peminjaman/info/(:segment)', 'Peminjaman::info/$1');
 $routes->post('Peminjaman/updateStatus', 'Peminjaman::updateStatus');
 
+$routes->post('DataMaster/Bidang/simpan', 'DataMaster::Bidang/simpan');
+$routes->get('DataMaster/Bidang/delete/(:any)', 'DataMaster::bidang/delete/$1');
+
+$routes->post('DataMaster/SubKegiatan/simpan', 'DataMaster::SubKegiatan/simpan');
+$routes->get('DataMaster/SubKegiatan/delete/(:any)', 'DataMaster::SubKegiatan/delete/$1');
+
 // File Upload
 // $routes->get('/', 'FileUploadController::index');
 $routes->post('upload', 'FileUploadController::upload');

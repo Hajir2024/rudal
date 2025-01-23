@@ -73,3 +73,30 @@ function hari_ini()
 
     return $hari_ini;
 }
+
+// ENCRYPT / DECRYPT
+function enkrip($string, $key = 258456)
+{
+    $result = '';
+    for ($i = 0, $k = strlen($string); $i < $k; $i++) {
+        $char = substr($string, $i, 1);
+        $keychar = substr($key, ($i % strlen($key)) - 1, 1);
+        $char = chr(ord($char) + ord($keychar));
+        $result .= $char;
+    }
+    return base64_encode($result);
+}
+
+
+function dekrip($string, $key = 258456)
+{
+    $result = '';
+    $string = base64_decode($string);
+    for ($i = 0, $k = strlen($string); $i < $k; $i++) {
+        $char = substr($string, $i, 1);
+        $keychar = substr($key, ($i % strlen($key)) - 1, 1);
+        $char = chr(ord($char) - ord($keychar));
+        $result .= $char;
+    }
+    return $result;
+}
