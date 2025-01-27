@@ -91,6 +91,10 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
                 <small class="mt-auto mb-auto mr-1"><?= hari_ini(); ?>, </small><small id="time" class="font-weight-bold mt-auto mb-auto"></small>
+                <a class="mt-auto mb-auto ml-1" href=" <?= base_url('/login') ?>">
+                    <small class="fas fa-sign-in-alt"></small>
+                    Login
+                </a>
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -114,14 +118,12 @@
                         </form>
                     </div>
                 </li>
-
                 <div class="topbar-divider d-none d-sm-block"></div>
-
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Super Admin</span>
                         <img class="img-profile rounded-circle"
                             src="<?= base_url('public/') ?>img/undraw_profile.svg">
                     </a>
@@ -141,7 +143,7 @@
                             Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" href="<?= base_url('/logout') ?>">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
