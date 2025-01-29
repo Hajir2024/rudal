@@ -91,10 +91,6 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
                 <small class="mt-auto mb-auto mr-1"><?= hari_ini(); ?>, </small><small id="time" class="font-weight-bold mt-auto mb-auto"></small>
-                <a class="mt-auto mb-auto ml-1" href=" <?= base_url('/login') ?>">
-                    <small class="fas fa-sign-in-alt"></small>
-                    Login
-                </a>
                 <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                 <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -143,7 +139,7 @@
                             Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?= base_url('/logout') ?>">
+                        <a class="dropdown-item" href="<?= base_url('logout') ?>">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
@@ -154,6 +150,5 @@
 
         </nav>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid mb-5 pb-5">

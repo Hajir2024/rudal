@@ -9,13 +9,7 @@ class M_Login extends Model
     protected $table = 'users'; // Nama tabel di database
 
     // Kolom yang diizinkan untuk operasi CRUD
-    protected $allowedFields = [
-        'name',
-        'password',
-        'remember_token',
-        'created_at',
-        'updated_at'
-    ];
+    protected $allowedFields = ['name', 'password', 'active', 'role'];
 
     // Aktifkan timestamp otomatis
     protected $useTimestamps = true;

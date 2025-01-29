@@ -6,6 +6,7 @@ class Dashboard extends BaseController
 {
     public function index()
     {
+        $session = session();
         $data = [
             'title' => 'Dashboard'
         ];

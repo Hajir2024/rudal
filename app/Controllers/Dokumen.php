@@ -24,6 +24,7 @@ class Dokumen extends BaseController
 
     public function index()
     {
+        $session = session();
         $data = [
             'title' => 'Dokumen',
             'dokumen' => $this->dokumen->getDataDokumen(),
@@ -35,7 +36,7 @@ class Dokumen extends BaseController
 
     public function simpan()
     {
-
+        $session = session();
         // Validasi input
         if (!$this->validate('dokumenUpload')) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
@@ -78,6 +79,7 @@ class Dokumen extends BaseController
 
     public function detail($id)
     {
+        $session = session();
         // Ambil data dokumen berdasarkan ID
         $dokumen = $this->dokumen->getDokumenById($id);
 
@@ -91,6 +93,7 @@ class Dokumen extends BaseController
 
     public function hapus($id)
     {
+        $session = session();
         // Ambil data dokumen berdasarkan ID
         $dokumen = $this->dokumen->find($id);
         if (!$dokumen) {
@@ -113,6 +116,7 @@ class Dokumen extends BaseController
 
     public function update()
     {
+        $session = session();
         $data = [
             'kd_rak'        => $this->request->getPost('kd_rak'),
             'kd_box'        => $this->request->getPost('kd_box') . $this->request->getPost('no_box'),
@@ -175,6 +179,7 @@ class Dokumen extends BaseController
 
     public function getDokumenById()
     {
+        $session = session();
         if ($this->request->getMethod() === 'POST') {
             $id = $this->request->getPost('id');
             $dokumen = $this->dokumen->getDokumenById($id);
@@ -190,6 +195,7 @@ class Dokumen extends BaseController
 
     public function info($id)
     {
+        $session = session();
         $dataPeminjam = $this->peminjaman->getInfoPeminjam($id);
         // Cek apakah data ditemukan
         if ($dataPeminjam) {

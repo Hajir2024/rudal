@@ -21,6 +21,7 @@ class Peminjaman extends BaseController
 
     public function Pinjam()
     {
+        $session = session();
         $data = [
             'title' => 'Peminjaman',
             'dokumen' => $this->dokumen->getDataDokumen(),
@@ -30,6 +31,7 @@ class Peminjaman extends BaseController
 
     public function DaftarPeminjam()
     {
+        $session = session();
         $data = [
             'title' => 'Peminjaman',
             'peminjaman' => $this->peminjaman->getDataPeminjaman(),
@@ -39,6 +41,7 @@ class Peminjaman extends BaseController
 
     public function simpan()
     {
+        $session = session();
         // Validasi data yang diterima dari form
         $validation =  \Config\Services::validation();
         $validation->setRules([
@@ -90,6 +93,7 @@ class Peminjaman extends BaseController
 
     public function update()
     {
+        $session = session();
         $data = [
             'kd_rak'        => $this->request->getPost('kd_rak'),
             'kd_box'        => $this->request->getPost('kd_box') . $this->request->getPost('no_box'),
@@ -152,6 +156,7 @@ class Peminjaman extends BaseController
 
     public function info($nip)
     {
+        $session = session();
         if (!ctype_digit($nip)) { // Pastikan NIP hanya terdiri dari angka
             return $this->response->setJSON(['error' => 'Format NIP tidak valid']);
         }
@@ -167,6 +172,7 @@ class Peminjaman extends BaseController
 
     public function updateStatus()
     {
+        $session = session();
         // Ambil ID dari request
         $id = $this->request->getPost('id');
 

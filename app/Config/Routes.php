@@ -6,9 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 // Login
-$routes->get('/login', 'Login::index');
-$routes->post('/auth/login', 'Login::auth');
-$routes->get('/logout', 'Login::logout');
+$routes->get('login', 'Auth::login');
+$routes->post('Auth/attemptLogin', 'Auth::attemptLogin');  // Proses login
+$routes->get('logout', 'Auth::logout');     // Proses logout
+$routes->get('cek', 'Auth::showSession');     // Proses logout
 
 // Routes
 $routes->get('/', 'Dashboard::index');
