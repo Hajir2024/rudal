@@ -17,7 +17,7 @@ class AuthFilter implements FilterInterface
             $uri = service('uri');
             $segment = $uri->getSegment(1);
             if (!in_array($segment, ['login', 'logout'])) {
-                return redirect()->to('login')->with('error', 'Anda harus login terlebih dahulu.');
+                return redirect()->to('/')->with('error', 'Anda harus login terlebih dahulu.');
             }
         }
     }

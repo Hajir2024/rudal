@@ -56,7 +56,7 @@ class Auth extends Controller
         $session->destroy(); // Hapus session
 
         // Simpan flashdata sebelum menghancurkan session
-        return redirect()->to('login');
+        return redirect()->to('/');
     }
 
     public function showSession()

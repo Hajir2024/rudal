@@ -20,47 +20,47 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    <?php if (session()->get('isLoggedIn')) : ?>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Charts -->
+        <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
+            <a class="nav-link" href="<?= base_url('Dokumen') ?>">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Dokumen</span></a>
+        </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Nav Item - Pages Collapse Menu -->
-    <!-- Nav Item - Charts -->
-    <li class="nav-item <?= ($title == 'Dokumen') ? 'active' : '' ?> ">
-        <a class="nav-link" href="<?= base_url('Dokumen') ?>">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Dokumen</span></a>
-    </li>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?= ($title == 'Peminjaman') ? 'active' : '' ?> ">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
-            aria-expanded="true" aria-controls="collapsePeminjaman">
-            <i class="fas fa-fw fa-hand-holding"></i>
-            <span>Peminjaman</span>
-        </a>
-        <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPeminjaman" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= base_url('Pinjam') ?>"><i class="fas fa-fw fa-hand-holding"></i> Pinjam</a>
-                <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>"><i class="fas fa-fw fa-clipboard-list"></i> Daftar Peminjam</a>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item <?= ($title == 'Peminjaman') ? 'active' : '' ?> ">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePeminjaman"
+                aria-expanded="true" aria-controls="collapsePeminjaman">
+                <i class="fas fa-fw fa-hand-holding"></i>
+                <span>Peminjaman</span>
+            </a>
+            <div id="collapsePeminjaman" class="collapse" aria-labelledby="headingPeminjaman" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?= base_url('Pinjam') ?>"><i class="fas fa-fw fa-hand-holding"></i> Pinjam</a>
+                    <a class="collapse-item" href="<?= base_url('DaftarPeminjam') ?>"><i class="fas fa-fw fa-clipboard-list"></i> Daftar Peminjam</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?= ($title == 'Data Master') ? 'active' : '' ?> "">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item <?= ($title == 'Data Master') ? 'active' : '' ?> "">
         <a class=" nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
-        aria-expanded="true" aria-controls="collapseDataMaster">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Data Master</span>
-        </a>
-        <div id="collapseDataMaster" class="collapse" aria-labelledby="headingDataMaster" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= base_url('Bidang') ?>"><i class="fas fa-fw fa-server"></i> Bidang</a>
-                <a class="collapse-item" href="<?= base_url('SubKegiatan') ?>"><i class="fas fa-fw fa-network-wired"></i> Sub Kegiatan</a>
+            aria-expanded="true" aria-controls="collapseDataMaster">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Master</span>
+            </a>
+            <div id="collapseDataMaster" class="collapse" aria-labelledby="headingDataMaster" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?= base_url('Bidang') ?>"><i class="fas fa-fw fa-server"></i> Bidang</a>
+                    <a class="collapse-item" href="<?= base_url('SubKegiatan') ?>"><i class="fas fa-fw fa-network-wired"></i> Sub Kegiatan</a>
+                </div>
             </div>
-        </div>
-    </li>
-
+        </li>
+    <?php endif; ?>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -119,30 +119,40 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Super Admin</span>
+                        <?php if (session()->get('isLoggedIn')) : ?>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('name') ?></span>
+                        <?php endif; ?>
                         <img class="img-profile rounded-circle"
                             src="<?= base_url('public/') ?>img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Settings
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Activity Log
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?= base_url('logout') ?>">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>
+                        <?php if (session()->get('isLoggedIn')) : ?>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?= base_url('logout') ?>">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        <?php endif; ?>
+                        <?php if (!session()->get('isLoggedIn')) : ?>
+                            <a class="dropdown-item" href="<?= base_url('login') ?>">
+                                <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Login
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </li>
 
