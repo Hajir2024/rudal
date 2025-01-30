@@ -86,7 +86,7 @@
             <form
                 class="d-none d-sm-inline-block form-inline ">
                 <h5>RUDAL - Ruang Arsip Digital</h5>
-                <i>Pengarsipan yang Membawa Keamanan dan Kemudahan dalam Penyimpanan Dokumen</i>
+                <i>Penataan Arsip Mudah Nyaman Dan Aman</i>
             </form>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
