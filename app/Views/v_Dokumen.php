@@ -20,7 +20,7 @@
         </button>
     </div>
 <?php endif; ?>
-<table id="myTable" class="table table-striped table-hover table-sm table-bordered text-gray-900" style="width:100%">
+<table id="myTable" class="table table-striped table-hover table-sm table-bordered text-gray-900">
     <thead>
         <tr>
             <th class="text-center">No</th>

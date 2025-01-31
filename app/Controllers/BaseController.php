@@ -57,6 +57,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = service('session');
         // Memuat Library Template
         $this->template = new Template();
+
         // $this->template->setData('appName', 'Sistem Desa'); // Contoh data global
     }
 }

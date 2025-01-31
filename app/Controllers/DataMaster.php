@@ -19,6 +19,9 @@ class DataMaster extends BaseController
     public function Bidang($aksi = '', $idx = '')
     {
         $session = session();
+        if ($session->get('isLoggedIn') && $session->get('role') != 'admin') {
+            return redirect()->to('/');
+        }
         $id = dekrip($idx);
         if ($aksi == 'delete') {
             $this->bidang->where('id', $id)->delete();
@@ -55,6 +58,9 @@ class DataMaster extends BaseController
     public function SubKegiatan($aksi = '', $idx = '')
     {
         $session = session();
+        if ($session->get('isLoggedIn') && $session->get('role') != 'admin') {
+            return redirect()->to('/');
+        }
         $id = dekrip($idx);
         if ($aksi == 'delete') {
             $this->subkegiatan->where('id', $id)->delete();

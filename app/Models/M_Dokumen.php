@@ -50,4 +50,9 @@ class M_Dokumen extends Model
             ->where('dokumens.id', $id) // Memastikan mengambil data berdasarkan ID
             ->first(); // Mengambil satu baris data
     }
+
+    public function getTotalDokumen()
+    {
+        return $this->countAll();
+    }
 }

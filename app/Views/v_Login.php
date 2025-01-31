@@ -26,14 +26,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
-
                                     <!-- Flash Message -->
                                     <?php if (session()->getFlashdata('error')) : ?>
                                         <div class="alert alert-danger">
                                             <?= session()->getFlashdata('error'); ?>
                                         </div>
                                     <?php endif; ?>
-
                                     <form action="<?= base_url('Auth/attemptLogin'); ?>" method="post" class="user">
                                         <?= csrf_field(); ?>
                                         <div class="form-group">
@@ -49,6 +47,7 @@
                                         </button>
                                     </form>
                                     <hr>
+                                    <a href="<?= base_url('/'); ?>" class="text-decoration-none">&laquo; Kembali</a>
                                 </div>
                             </div>
                         </div>

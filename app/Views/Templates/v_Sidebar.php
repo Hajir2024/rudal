@@ -20,7 +20,7 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <?php if (session()->get('isLoggedIn')) : ?>
+    <?php if (isLoggedIn() == 'admin' || (isLoggedIn() == 'user')) : ?>
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Nav Item - Pages Collapse Menu -->
@@ -45,7 +45,8 @@
                 </div>
             </div>
         </li>
-
+    <?php endif; ?>
+    <?php if (isLoggedIn() == 'admin') : ?>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item <?= ($title == 'Data Master') ? 'active' : '' ?> "">
         <a class=" nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDataMaster"
@@ -61,6 +62,7 @@
             </div>
         </li>
     <?php endif; ?>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -147,7 +149,7 @@
                                 Logout
                             </a>
                         <?php endif; ?>
-                        <?php if (!session()->get('isLoggedIn')) : ?>
+                        <?php if (isLoggedIn() == false) : ?>
                             <a class="dropdown-item" href="<?= base_url('login') ?>">
                                 <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Login
@@ -155,9 +157,7 @@
                         <?php endif; ?>
                     </div>
                 </li>
-
             </ul>
-
         </nav>
         <!-- End of Topbar -->
         <!-- Begin Page Content -->

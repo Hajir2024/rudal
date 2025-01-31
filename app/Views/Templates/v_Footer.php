@@ -106,7 +106,6 @@
 
     $("#id_subkeg").chained("#id_bid");
 </script>
-</script>
 
 <script>
     $(document).ready(function() {

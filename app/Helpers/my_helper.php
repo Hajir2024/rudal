@@ -71,7 +71,7 @@ function hari_ini()
             break;
     }
 
-    return $hari_ini;
+    return $hari_ini . ", " . date("d-m-Y");
 }
 
 // ENCRYPT / DECRYPT
@@ -99,4 +99,19 @@ function dekrip($string, $key = 258456)
         $result .= $char;
     }
     return $result;
+}
+
+function isLoggedIn()
+{
+    $status = '';
+    if (session()->get('isLoggedIn')) {
+        if (session()->get('role') == 'user') {
+            $status = 'user';
+        } else {
+            $status = 'admin';
+        };
+    } else {
+        $status = false;
+    }
+    return $status;
 }
