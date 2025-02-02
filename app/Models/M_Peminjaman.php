@@ -39,4 +39,33 @@ class M_Peminjaman extends Model
             'status' => 'DI PINJAM'
         ])->getRowArray();
     }
+
+    function getTopPeminjamanBidang($waktu)
+    {
+        if ($waktu == 'bulan') {
+            return $this->db->table('peminjamans p') // Menggunakan alias 'p' langsung
+                ->select('b.bidang, d.id_bid, COUNT(p.id) AS total_pinjaman')
+                ->join('dokumens d', 'p.id_dokumen = d.id')
+                ->join('bidangs b', 'd.id_bid = b.id')
+                ->where('MONTH(p.tgl_pinjam)', date('m'))
+                ->where('YEAR(p.tgl_pinjam)', date('Y'))
+                ->where('p.status', 'DI PINJAM')
+                ->groupBy('d.id_bid, b.bidang')
+                ->orderBy('total_pinjaman', 'DESC')
+                ->limit(1) // Hanya ambil bidang dengan pinjaman terbanyak
+                ->get()->getRowArray(); // Ambil satu baris hasil query
+
+        } else {
+            return $this->db->table('peminjamans p') // Menggunakan alias 'p' langsung
+                ->select('b.bidang, d.id_bid, COUNT(p.id) AS total_pinjaman')
+                ->join('dokumens d', 'p.id_dokumen = d.id')
+                ->join('bidangs b', 'd.id_bid = b.id')
+                ->where('YEAR(p.tgl_pinjam)', date('Y')) // Ganti untuk filter berdasarkan tahun
+                ->where('p.status', 'DI PINJAM')
+                ->groupBy('d.id_bid, b.bidang')
+                ->orderBy('total_pinjaman', 'DESC')
+                ->limit(1) // Hanya ambil bidang dengan pinjaman terbanyak
+                ->get()->getRowArray(); // Ambil satu baris hasil query
+        }
+    }
 }

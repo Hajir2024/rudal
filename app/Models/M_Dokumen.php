@@ -55,4 +55,26 @@ class M_Dokumen extends Model
     {
         return $this->countAll();
     }
+
+    public function getTotalStock($status)
+    {
+        return $this->where('status', $status)->countAllResults();
+    }
+
+    public function getTotalDokumenByBidangWithStatus()
+    {
+        // Query untuk mendapatkan data dari tabel 'bidangs' dan 'dokumens'
+        $query = $this->db->table('bidangs b')
+            ->select('b.bidang, 
+          COUNT(d.id) AS total_dokumen, 
+          COUNT(CASE WHEN d.status = "ADA" THEN 1 END) AS total_ada,
+          COUNT(CASE WHEN d.status = "TIDAK ADA" THEN 1 END) AS total_tidak_ada')
+            ->join('dokumens d', 'd.id_bid = b.id', 'left') // LEFT JOIN dokumens
+            ->groupBy('b.id, b.bidang')
+            ->orderBy('total_dokumen', 'DESC')
+            ->get(); // Menjalankan query dengan get()
+
+        // Mengambil hasil dalam bentuk array
+        return $query->getResultArray();
+    }
 }
