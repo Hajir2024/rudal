@@ -84,6 +84,7 @@
             </div>
             <div class="modal-body">
                 <form id="formPinjam" action="<?= base_url('Peminjaman/simpan') ?>" method="POST">
+                    <?= csrf_field(); ?>
                     <input type="hidden" name="selected_ids" id="selectedIdsInput">
                     <div class="alert alert-success" role="alert">
                         <h6 class="alert-heading">Dokumen yang dipilih: <span id="totalSelected" class="font-weight-bold text-primary"></span></h6>

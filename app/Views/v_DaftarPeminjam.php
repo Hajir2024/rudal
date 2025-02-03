@@ -174,6 +174,12 @@
             var nip = $(this).data('nip'); // Ambil nip dari data-nip link
             var $totalDokumenElement = $(this); // Ambil elemen yang akan diperbarui
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': '<?= csrf_hash(); ?>'
+                }
+            });
+
             $.ajax({
                 url: '<?= base_url("Peminjaman/info") ?>/' + nip,
                 method: 'GET',

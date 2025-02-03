@@ -92,6 +92,7 @@
             </div>
             <div class="modal-body">
                 <form action="<?= base_url('Dokumen/simpan') ?>" method="POST" class="text-gray-900" enctype="multipart/form-data">
+                    <?= csrf_field(); ?>
                     <div class="row">
                         <!-- Kolom pertama -->
                         <div class="col-md-6">

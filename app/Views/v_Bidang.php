@@ -35,6 +35,7 @@
         <h4 class="h4 mb-0 text-gray-900"><i class="fas fa-fw fa-plus"></i>Tambah Bidang</h4>
     </div>
     <form action="<?= base_url('DataMaster/Bidang/simpan') ?>" method="POST" class="text-gray-900">
+        <?= csrf_field(); ?>
         <div class="row">
             <!-- Kolom pertama -->
             <div class="col-md-6">
